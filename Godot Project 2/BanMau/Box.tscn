@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://gt8183weg0og"]
+
+[ext_resource type="Texture2D" uid="uid://j1wouckccd57" path="res://HinhAnh/icon.svg" id="1_2dqk1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l51pp"]
+size = Vector2(130, 126)
+
+[node name="Box" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.7, 0.7)
+shape = SubResource("RectangleShape2D_l51pp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_2dqk1")
