@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://clb1a0ae8psrn"]
+
+[ext_resource type="Texture2D" uid="uid://dnayr5jysdqed" path="res://Backage/BarHP_SFX ( By Lyn )/icon.svg" id="1_nkcs5"]
+[ext_resource type="Script" path="res://Backage/BarHP_SFX ( By Lyn )/Boss.gd" id="2_15ngb"]
+[ext_resource type="AudioStream" uid="uid://caj23jpngif51" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-arcade-retro-game-over-213.wav" id="3_edp8m"]
+[ext_resource type="Script" path="res://Backage/BarHP_SFX ( By Lyn )/ColorRect.gd" id="4_4lyah"]
+[ext_resource type="AudioStream" uid="uid://bbx7it0doysg6" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-game-treasure-coin-2038.wav" id="5_fcfgf"]
+[ext_resource type="AudioStream" uid="uid://cvjmnqptimvw8" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-failure-arcade-alert-notification-240.wav" id="6_mctlf"]
+
+[node name="Game" type="Node2D"]
+position = Vector2(76, 119)
+
+[node name="Boss" type="Sprite2D" parent="."]
+texture = ExtResource("1_nkcs5")
+script = ExtResource("2_15ngb")
+
+[node name="HeathBar" type="ProgressBar" parent="Boss"]
+offset_left = -60.0
+offset_top = -112.0
+offset_right = 59.0
+offset_bottom = -85.0
+max_value = 10.0
+value = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DeadSound" type="AudioStreamPlayer" parent="Boss"]
+stream = ExtResource("3_edp8m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 120.0
+offset_top = -103.0
+offset_right = 382.0
+offset_bottom = 70.0
+color = Color(0.611765, 0.541176, 0.27451, 1)
+script = ExtResource("4_4lyah")
+metadata/_edit_use_anchors_ = true
+
+[node name="PlusOneHeath" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.019084
+anchor_top = 0.017341
+anchor_right = 0.019084
+anchor_bottom = 0.017341
+offset_left = 115.0
+offset_top = 38.0
+offset_right = 193.0
+offset_bottom = 69.0
+text = "+1 Heath"
+metadata/_edit_use_anchors_ = true
+
+[node name="PlusHeathSound" type="AudioStreamPlayer" parent="ColorRect/PlusOneHeath"]
+stream = ExtResource("5_fcfgf")
+
+[node name="MinusOneHeath" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0229008
+anchor_right = -0.0229008
+offset_left = 24.0
+offset_top = 41.0
+offset_right = 98.0
+offset_bottom = 72.0
+text = "-1 Heath"
+metadata/_edit_use_anchors_ = true
+
+[node name="MinusHeathSound" type="AudioStreamPlayer" parent="ColorRect/MinusOneHeath"]
+stream = ExtResource("6_mctlf")
+
+[connection signal="value_changed" from="Boss/HeathBar" to="Boss" method="_on_heath_bar_value_changed"]
+[connection signal="pressed" from="ColorRect/PlusOneHeath" to="Boss" method="_on_plus_one_heath_pressed"]
+[connection signal="pressed" from="ColorRect/PlusOneHeath" to="ColorRect" method="_on_plus_one_heath_pressed"]
+[connection signal="pressed" from="ColorRect/MinusOneHeath" to="Boss" method="_on_minus_one_heath_pressed"]
+[connection signal="pressed" from="ColorRect/MinusOneHeath" to="ColorRect" method="_on_minus_one_heath_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://sq40ret7vfy7"]
+[gd_scene load_steps=15 format=3 uid="uid://sq40ret7vfy7"]
 
 [ext_resource type="Texture2D" uid="uid://cjj2geo3860fc" path="res://Images/Torch_Size_64/Torch_64_Flamas_0.png" id="1_78a2g"]
 [ext_resource type="Texture2D" uid="uid://dii4pofe4jtxm" path="res://Images/Torch_Size_64/Torch_64_Flamas_1.png" id="2_ahkxy"]
@@ -39,6 +39,27 @@ _data = {
 "Torch_Animation": SubResource("Animation_24soo")
 }
 
+[sub_resource type="Gradient" id="Gradient_w84s0"]
+offsets = PackedFloat32Array(0, 0.993378)
+colors = PackedColorArray(0.996094, 0.429688, 0.421875, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7thph"]
+gradient = SubResource("Gradient_w84s0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3phvu"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 20.0
+damping_max = 20.0
+color_ramp = SubResource("GradientTexture1D_7thph")
+
 [node name="Torch_1" type="Node2D"]
 
 [node name="Torch64Flamas0" type="Sprite2D" parent="."]
@@ -55,3 +76,7 @@ autoplay = "Torch_Animation"
 libraries = {
 "": SubResource("AnimationLibrary_ypwbp")
 }
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_3phvu")

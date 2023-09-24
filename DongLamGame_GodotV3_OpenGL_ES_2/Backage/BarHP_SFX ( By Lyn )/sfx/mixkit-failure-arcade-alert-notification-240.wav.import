@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mixkit-failure-arcade-alert-notification-240.wav-055ee42255c37e82681205c420e84fdf.sample"
+
+[deps]
+
+source_file="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-failure-arcade-alert-notification-240.wav"
+dest_files=[ "res://.import/mixkit-failure-arcade-alert-notification-240.wav-055ee42255c37e82681205c420e84fdf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mixkit-arcade-retro-game-over-213.wav-95bdd18d1df4cad3e1eb9d03d843c810.sample"
+
+[deps]
+
+source_file="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-arcade-retro-game-over-213.wav"
+dest_files=[ "res://.import/mixkit-arcade-retro-game-over-213.wav-95bdd18d1df4cad3e1eb9d03d843c810.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

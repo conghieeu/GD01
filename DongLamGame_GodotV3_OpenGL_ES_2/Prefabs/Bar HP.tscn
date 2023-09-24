@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="Bar HP" type="ProgressBar"]
+anchor_right = 0.44
+margin_left = -16.0
+margin_top = -52.0
+margin_right = 48.0
+margin_bottom = -38.0
+rect_scale = Vector2( 0.5, 0.5 )

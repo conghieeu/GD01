@@ -1,0 +1,130 @@
+[gd_scene load_steps=12 format=3 uid="uid://qqgxt2fpvp6u"]
+
+[ext_resource type="Script" path="res://Backage/AI_monster/script/ai_monster.gd" id="1_fepny"]
+[ext_resource type="Texture2D" uid="uid://c25dgtoqryw51" path="res://Test file/sence/sprite_AI.png" id="2_2idpm"]
+[ext_resource type="AudioStream" uid="uid://caj23jpngif51" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-arcade-retro-game-over-213.wav" id="3_1fs8u"]
+[ext_resource type="AudioStream" uid="uid://bbx7it0doysg6" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-game-treasure-coin-2038.wav" id="4_kb0rl"]
+[ext_resource type="AudioStream" uid="uid://cvjmnqptimvw8" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-failure-arcade-alert-notification-240.wav" id="5_r5hdj"]
+
+[sub_resource type="Animation" id="Animation_7ptbs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rep5x"]
+resource_name = "atk_AI"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_pvg1s"]
+resource_name = "idel_AI"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_s3i72"]
+resource_name = "run_AI"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fy76r"]
+_data = {
+"RESET": SubResource("Animation_7ptbs"),
+"atk_AI": SubResource("Animation_rep5x"),
+"idel_AI": SubResource("Animation_pvg1s"),
+"run_AI": SubResource("Animation_s3i72")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ndyk"]
+size = Vector2(31, 92)
+
+[node name="AI_monster" type="CharacterBody2D"]
+script = ExtResource("1_fepny")
+
+[node name="Model" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Model"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_2idpm")
+offset = Vector2(-0.485, -25)
+hframes = 8
+vframes = 3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 26.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fy76r")
+}
+
+[node name="HeathBar" type="ProgressBar" parent="."]
+offset_left = -59.0
+offset_top = -150.0
+offset_right = 60.0
+offset_bottom = -123.0
+max_value = 10.0
+value = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DeadSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1fs8u")
+
+[node name="PlusHeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kb0rl")
+
+[node name="MinusHeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_r5hdj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -44)
+shape = SubResource("RectangleShape2D_1ndyk")
+
+[connection signal="value_changed" from="HeathBar" to="." method="_on_heath_bar_value_changed"]

@@ -1,4 +1,4 @@
-extends Node
+extends ColorRect
 
 # tạo file save ở máy người dùng
 # const SAVE_PATH = "user://save_file.save"
