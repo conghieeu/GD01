@@ -39,7 +39,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_area_2d_body_entered(body):
-	
 	# nếu đối tượng va chạm có group hit thì gọi take_damge của nó
 	if body.is_in_group("Hit") && body != self:
 		print("Player hit: ", body.name)

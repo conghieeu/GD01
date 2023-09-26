@@ -1,9 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://ck67gk8qlmva4"]
 
-[ext_resource type="Script" path="res://Scripts/Camera/Camera2DFollowPlayer.gd" id="1_qhhww"]
+[ext_resource type="Script" path="res://Scripts/Loading Scene/main_menu.gd" id="1_grr7r"]
 [ext_resource type="Script" path="res://Scripts/Save Load/SaveSystem.gd" id="2_60xm8"]
 [ext_resource type="Script" path="res://Scripts/Save Load/TestSaveLoadPanel.gd" id="3_0lwen"]
-[ext_resource type="Script" path="res://Scripts/Scenes/ChangeScene.gd" id="4_r11sm"]
 [ext_resource type="AudioStream" uid="uid://bavkyqkrmutf3" path="res://Audio/Forest_sound_effect_for_editing_for_(getmp3.pro).mp3" id="5_idd1i"]
 [ext_resource type="PackedScene" uid="uid://47hbgfihn7t3" path="res://Prefabs/parallax_background.tscn" id="6_scvia"]
 [ext_resource type="Texture2D" uid="uid://cgk861q8eyyqb" path="res://Tilemaps/Tileset.png" id="7_3uywg"]
@@ -14,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bbx7it0doysg6" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-game-treasure-coin-2038.wav" id="12_dxedg"]
 [ext_resource type="AudioStream" uid="uid://cvjmnqptimvw8" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-failure-arcade-alert-notification-240.wav" id="13_3lwd1"]
 [ext_resource type="PackedScene" uid="uid://qqgxt2fpvp6u" path="res://Backage/AI_monster/sence/ai_monster.tscn" id="14_xqnco"]
+[ext_resource type="PackedScene" uid="uid://c0ey38tpt64i8" path="res://Prefabs/camera_2d.tscn" id="15_11m4l"]
 [ext_resource type="PackedScene" uid="uid://bo06jlg5njyan" path="res://Prefabs/player.tscn" id="15_c70l3"]
 
 [sub_resource type="Environment" id="Environment_esunj"]
@@ -570,21 +570,8 @@ sources/0 = SubResource("TileSetAtlasSource_enbjm")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwa8j"]
 size = Vector2(128, 128)
 
-[node name="Scene_0" type="Node"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_smoothed = true
-position_smoothing_enabled = true
-
-[node name="DiTheoPlayer" type="Node2D" parent="Camera2D" node_paths=PackedStringArray("camera2D", "player")]
-script = ExtResource("1_qhhww")
-camera2D = NodePath("..")
-player = NodePath("../../Player")
-
-[node name="Systems" type="Node2D" parent="."]
-
-[node name="SaveSystem" type="Node2D" parent="Systems"]
-script = ExtResource("2_60xm8")
+[node name="next_scene" type="Node"]
+script = ExtResource("1_grr7r")
 
 [node name="Save, Load (Demo))" type="ColorRect" parent="."]
 offset_left = 882.0
@@ -708,7 +695,6 @@ offset_top = 1411.0
 offset_right = 1506.0
 offset_bottom = 1508.0
 color = Color(0, 0.619608, 0.619608, 1)
-script = ExtResource("4_r11sm")
 
 [node name="Button" type="Button" parent="ChangeScene"]
 layout_mode = 0
@@ -724,6 +710,11 @@ layout_mode = 0
 offset_right = 123.0
 offset_bottom = 27.0
 text = "Đi sang cảnh 1"
+
+[node name="Systems" type="Node2D" parent="."]
+
+[node name="SaveSystem" type="Node2D" parent="Systems"]
+script = ExtResource("2_60xm8")
 
 [node name="Enviroment" type="Node2D" parent="."]
 
@@ -845,6 +836,8 @@ position = Vector2(238, 1509)
 [node name="Player" parent="." instance=ExtResource("15_c70l3")]
 position = Vector2(746, 1413)
 
+[node name="Camera2D" parent="Player" instance=ExtResource("15_11m4l")]
+
 [connection signal="pressed" from="Save, Load (Demo))/Save" to="Save, Load (Demo))" method="_on_save_button_pressed"]
 [connection signal="pressed" from="Save, Load (Demo))/Load" to="Save, Load (Demo))" method="_on_load_button_pressed"]
 [connection signal="pressed" from="Save, Load (Demo))/a+" to="Save, Load (Demo))" method="_on_plus_a_pressed"]
@@ -853,7 +846,7 @@ position = Vector2(746, 1413)
 [connection signal="pressed" from="Save, Load (Demo))/b-" to="Save, Load (Demo))" method="_on_minus_b_pressed"]
 [connection signal="pressed" from="Save, Load (Demo))/c+" to="Save, Load (Demo))" method="_on_plus_c_pressed"]
 [connection signal="pressed" from="Save, Load (Demo))/c-" to="Save, Load (Demo))" method="_on_minus_c_pressed"]
-[connection signal="pressed" from="ChangeScene/Button" to="ChangeScene" method="onSwitchScene_1"]
+[connection signal="pressed" from="ChangeScene/Button" to="." method="_on_switch_scene_1"]
 [connection signal="pressed" from="Enemys/Panel Heath Enemy Demo/ColorRect/PlusOneHeath" to="Enemys/Panel Heath Enemy Demo/ColorRect" method="_on_plus_one_heath_pressed" flags=18]
 [connection signal="pressed" from="Enemys/Panel Heath Enemy Demo/ColorRect/PlusOneHeath" to="Enemys/Panel Heath Enemy Demo/Enemy_1_Demo" method="_on_plus_one_heath_pressed"]
 [connection signal="pressed" from="Enemys/Panel Heath Enemy Demo/ColorRect/MinusOneHeath" to="Enemys/Panel Heath Enemy Demo/ColorRect" method="_on_minus_one_heath_pressed" flags=18]

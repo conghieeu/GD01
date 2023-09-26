@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://biwbl3xeok72p"]
+[gd_scene load_steps=18 format=3 uid="uid://c0yvar2yyj58a"]
 
-[ext_resource type="Script" path="res://Scripts/Camera/Camera2DFollowPlayer.gd" id="1_bt50j"]
+[ext_resource type="Script" path="res://Scripts/Loading Scene/main_menu.gd" id="1_rx8jg"]
 [ext_resource type="Script" path="res://Scripts/Save Load/SaveSystem.gd" id="2_20cpg"]
-[ext_resource type="Script" path="res://Scripts/Scenes/ChangeScene.gd" id="3_e3rp2"]
 [ext_resource type="AudioStream" uid="uid://bavkyqkrmutf3" path="res://Audio/Forest_sound_effect_for_editing_for_(getmp3.pro).mp3" id="4_4q1wf"]
 [ext_resource type="PackedScene" uid="uid://47hbgfihn7t3" path="res://Prefabs/parallax_background.tscn" id="5_qtwri"]
 [ext_resource type="Texture2D" uid="uid://cgk861q8eyyqb" path="res://Tilemaps/Tileset.png" id="6_y5q5d"]
@@ -12,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://caj23jpngif51" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-arcade-retro-game-over-213.wav" id="10_81sk8"]
 [ext_resource type="AudioStream" uid="uid://bbx7it0doysg6" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-game-treasure-coin-2038.wav" id="11_njlsk"]
 [ext_resource type="AudioStream" uid="uid://cvjmnqptimvw8" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-failure-arcade-alert-notification-240.wav" id="12_fjicx"]
+[ext_resource type="PackedScene" uid="uid://c0ey38tpt64i8" path="res://Prefabs/camera_2d.tscn" id="13_32buv"]
 [ext_resource type="PackedScene" uid="uid://bo06jlg5njyan" path="res://Prefabs/player.tscn" id="13_cq4hp"]
 
 [sub_resource type="Environment" id="Environment_esunj"]
@@ -293,29 +293,15 @@ sources/0 = SubResource("TileSetAtlasSource_17hql")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwa8j"]
 size = Vector2(128, 128)
 
-[node name="Scene_0" type="Node"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_smoothed = true
-position_smoothing_enabled = true
-
-[node name="DiTheoPlayer" type="Node2D" parent="Camera2D" node_paths=PackedStringArray("camera2D", "player")]
-script = ExtResource("1_bt50j")
-camera2D = NodePath("..")
-player = NodePath("../../Player")
-
-[node name="Systems" type="Node2D" parent="."]
-
-[node name="SaveSystem" type="Node2D" parent="Systems"]
-script = ExtResource("2_20cpg")
+[node name="Scene_1" type="Node"]
+script = ExtResource("1_rx8jg")
 
 [node name="ChangeScene" type="ColorRect" parent="."]
-offset_left = 927.0
-offset_top = 1385.0
-offset_right = 1051.0
-offset_bottom = 1482.0
+offset_left = 925.0
+offset_top = 1393.0
+offset_right = 1049.0
+offset_bottom = 1490.0
 color = Color(0, 0.619608, 0.619608, 1)
-script = ExtResource("3_e3rp2")
 
 [node name="Button" type="Button" parent="ChangeScene"]
 layout_mode = 0
@@ -323,14 +309,18 @@ offset_left = 28.0
 offset_top = 46.0
 offset_right = 94.0
 offset_bottom = 78.0
-text = "Scene_0
-"
+text = "Scene_0"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ChangeScene"]
 layout_mode = 0
 offset_right = 123.0
 offset_bottom = 27.0
-text = "Đi sang cảnh 0"
+text = "chuyển scene"
+
+[node name="Systems" type="Node2D" parent="."]
+
+[node name="SaveSystem" type="Node2D" parent="Systems"]
+script = ExtResource("2_20cpg")
 
 [node name="Enviroment" type="Node2D" parent="."]
 
@@ -465,7 +455,9 @@ stream = ExtResource("12_fjicx")
 [node name="Player" parent="." instance=ExtResource("13_cq4hp")]
 position = Vector2(719, 1378)
 
-[connection signal="pressed" from="ChangeScene/Button" to="ChangeScene" method="onSwitchScene"]
+[node name="Camera2D" parent="Player" instance=ExtResource("13_32buv")]
+
+[connection signal="pressed" from="ChangeScene/Button" to="." method="_on_switch_scene_0"]
 [connection signal="value_changed" from="Enemys/Enemy_1/HeathBar" to="Enemys/Enemy_1" method="_on_heath_bar_value_changed"]
 [connection signal="value_changed" from="Enemys/Enemy_1/HeathBar" to="Enemys/Enemy_1/Sprite" method="_on_heath_bar_value_changed" flags=18]
 [connection signal="value_changed" from="Enemys/Enemy_2/HeathBar" to="Enemys/Enemy_2" method="_on_heath_bar_value_changed"]
