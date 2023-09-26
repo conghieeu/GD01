@@ -16,33 +16,37 @@ grow_vertical = 2
 size_flags_horizontal = 8
 color = Color(0.603922, 0.407843, 0.337255, 1)
 
-[node name="bat_dau" type="Button" parent="CanvasLayer"]
-offset_left = 55.0
-offset_top = 207.0
-offset_right = 280.0
-offset_bottom = 293.0
-text = "Bắt đầu
+[node name="scene_0" type="Button" parent="CanvasLayer"]
+offset_left = 63.0
+offset_top = 580.0
+offset_right = 458.0
+offset_bottom = 696.0
+text = "Scene prototype"
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+offset_left = 63.0
+offset_top = 449.0
+offset_right = 458.0
+offset_bottom = 565.0
+text = "Start"
+
+[node name="scene_2" type="Button" parent="CanvasLayer"]
+offset_left = 63.0
+offset_top = 723.0
+offset_right = 458.0
+offset_bottom = 839.0
+text = "Setting
 "
 
-[node name="scene_0" type="Button" parent="CanvasLayer"]
-offset_left = 55.0
-offset_top = 310.0
-offset_right = 280.0
-offset_bottom = 396.0
-text = "Scene_0"
-
-[node name="creadit" type="Button" parent="CanvasLayer"]
-offset_left = 55.0
-offset_top = 511.0
-offset_right = 280.0
-offset_bottom = 597.0
-text = "Creadit"
-
-[node name="setting" type="Button" parent="CanvasLayer"]
-offset_left = 55.0
-offset_top = 409.0
-offset_right = 280.0
-offset_bottom = 495.0
-text = "Setting"
+[node name="scene_3" type="Button" parent="CanvasLayer"]
+offset_left = 63.0
+offset_top = 861.0
+offset_right = 458.0
+offset_bottom = 977.0
+text = "Creadit
+"
 
 [connection signal="pressed" from="CanvasLayer/scene_0" to="." method="_on_switch_scene_0"]
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_switch_scene_0"]
+[connection signal="pressed" from="CanvasLayer/scene_2" to="." method="_on_switch_scene_0"]
+[connection signal="pressed" from="CanvasLayer/scene_3" to="." method="_on_switch_scene_0"]

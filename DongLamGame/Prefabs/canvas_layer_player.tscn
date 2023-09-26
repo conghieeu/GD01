@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc2k2as4vjbj3"]
+
+[ext_resource type="Script" path="res://Scripts/UI/canvas_layer_player.gd" id="1_1arwj"]
+[ext_resource type="PackedScene" uid="uid://bv7xkivrchscn" path="res://Prefabs/TextureProgess.tscn" id="1_fwr2c"]
+[ext_resource type="Texture2D" uid="uid://j1wouckccd57" path="res://Sprites/icon.svg" id="2_pilo3"]
+
+[node name="PlayerLayer" type="CanvasLayer"]
+script = ExtResource("1_1arwj")
+
+[node name="BarHP" parent="." instance=ExtResource("1_fwr2c")]
+offset_left = 208.0
+offset_top = 48.0
+offset_right = 576.0
+offset_bottom = 80.0
+
+[node name="BarMP" parent="." instance=ExtResource("1_fwr2c")]
+offset_left = 208.0
+offset_top = 96.0
+offset_right = 528.0
+offset_bottom = 128.0
+tint_under = Color(0, 0.2, 0.317647, 1)
+tint_over = Color(0.235294, 0.482353, 0.552941, 1)
+tint_progress = Color(0.054902, 0.666667, 1, 1)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(108.75, 108.75)
+scale = Vector2(1.05078, 1.05078)
+texture = ExtResource("2_pilo3")

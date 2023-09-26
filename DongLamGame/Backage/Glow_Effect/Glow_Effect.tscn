@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://rj5orc243pms"]
 
-[ext_resource type="Texture2D" uid="uid://j1wouckccd57" path="res://Images/icon.svg" id="1_r64pj"]
+[ext_resource type="Texture2D" uid="uid://j1wouckccd57" path="res://Sprites/icon.svg" id="1_r64pj"]
 
 [sub_resource type="Environment" id="Environment_dep4o"]
 background_mode = 3

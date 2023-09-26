@@ -1,12 +1,12 @@
 [gd_scene load_steps=15 format=3 uid="uid://sq40ret7vfy7"]
 
-[ext_resource type="Texture2D" uid="uid://cjj2geo3860fc" path="res://Images/Torch_Size_64/Torch_64_Flamas_0.png" id="1_78a2g"]
-[ext_resource type="Texture2D" uid="uid://dii4pofe4jtxm" path="res://Images/Torch_Size_64/Torch_64_Flamas_1.png" id="2_ahkxy"]
-[ext_resource type="Texture2D" uid="uid://cq8wglxwop2xq" path="res://Images/Torch_Size_64/Torch_64_Flamas_2.png" id="3_5xlor"]
-[ext_resource type="Texture2D" uid="uid://c6e0wp0pt51m5" path="res://Images/Torch_Size_64/Torch_64_Flamas_3.png" id="4_q0osf"]
-[ext_resource type="Texture2D" uid="uid://uwyjcybcntd1" path="res://Images/Torch_Size_64/Torch_64_Flamas_4.png" id="5_bdnma"]
-[ext_resource type="Texture2D" uid="uid://13hwb3awty60" path="res://Images/Torch_Size_64/Torch_64_Flamas_5.png" id="6_ctyf8"]
-[ext_resource type="Texture2D" uid="uid://bv4cc3dff7qle" path="res://Images/Torch_Size_64/Torch_64_Flamas_6.png" id="7_8rq8u"]
+[ext_resource type="Texture2D" uid="uid://cjj2geo3860fc" path="res://Sprites/Torch_Size_64/Torch_64_Flamas_0.png" id="1_78a2g"]
+[ext_resource type="Texture2D" uid="uid://dii4pofe4jtxm" path="res://Sprites/Torch_Size_64/Torch_64_Flamas_1.png" id="2_ahkxy"]
+[ext_resource type="Texture2D" uid="uid://cq8wglxwop2xq" path="res://Sprites/Torch_Size_64/Torch_64_Flamas_2.png" id="3_5xlor"]
+[ext_resource type="Texture2D" uid="uid://c6e0wp0pt51m5" path="res://Sprites/Torch_Size_64/Torch_64_Flamas_3.png" id="4_q0osf"]
+[ext_resource type="Texture2D" uid="uid://uwyjcybcntd1" path="res://Sprites/Torch_Size_64/Torch_64_Flamas_4.png" id="5_bdnma"]
+[ext_resource type="Texture2D" uid="uid://13hwb3awty60" path="res://Sprites/Torch_Size_64/Torch_64_Flamas_5.png" id="6_ctyf8"]
+[ext_resource type="Texture2D" uid="uid://bv4cc3dff7qle" path="res://Sprites/Torch_Size_64/Torch_64_Flamas_6.png" id="7_8rq8u"]
 
 [sub_resource type="Gradient" id="Gradient_k7mxg"]
 offsets = PackedFloat32Array(0, 0.716495, 1)
@@ -62,14 +62,17 @@ color_ramp = SubResource("GradientTexture1D_7thph")
 
 [node name="Torch_1" type="Node2D"]
 
-[node name="Torch64Flamas0" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("7_8rq8u")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -39)
 scale = Vector2(2.68359, 2.62891)
 color = Color(0.996094, 0.574219, 0.554688, 1)
 texture = SubResource("GradientTexture2D_xva8o")
+
+[node name="Torch64Flamas0" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, -24)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_8rq8u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Torch_Animation"
@@ -78,5 +81,6 @@ libraries = {
 }
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -29)
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_3phvu")

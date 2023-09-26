@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0ey38tpt64i8"]
 
 [node name="Camera2D" type="Camera2D"]
-scale = Vector2(2, 2)
+offset = Vector2(0, -300)
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true

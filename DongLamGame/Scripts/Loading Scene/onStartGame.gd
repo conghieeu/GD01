@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal safe_to_load
+
 var nextScene = ""
 var progress = []
 var scene_load_status = 0
@@ -15,7 +17,7 @@ func _process(delta):
 func load_status():
 #	await safe_to_load
 #	self.queue_free()
-
+	
 	scene_load_status = ResourceLoader.load_threaded_get_status(nextScene, progress)
 	$Control/ProgressBar.value = progress[0]*100
 

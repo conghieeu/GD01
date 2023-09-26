@@ -1,12 +1,16 @@
 [gd_scene load_steps=12 format=3 uid="uid://qqgxt2fpvp6u"]
 
 [ext_resource type="Script" path="res://Backage/AI_monster/script/ai_monster.gd" id="1_fepny"]
-[ext_resource type="AudioStream" uid="uid://caj23jpngif51" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-arcade-retro-game-over-213.wav" id="3_1fs8u"]
-[ext_resource type="AudioStream" uid="uid://bbx7it0doysg6" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-game-treasure-coin-2038.wav" id="4_kb0rl"]
-[ext_resource type="AudioStream" uid="uid://cvjmnqptimvw8" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-failure-arcade-alert-notification-240.wav" id="5_r5hdj"]
+[ext_resource type="PackedScene" uid="uid://duhsmof1ih610" path="res://Prefabs/heath_bar.tscn" id="2_uo8pq"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8t04j"]
 load_path = "res://.godot/imported/sprite_AI.png-9c162597324cc96f2b1c6efe9e0ebb96.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ghjo"]
+size = Vector2(366, 184)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36q74"]
+size = Vector2(111, 105.5)
 
 [sub_resource type="Animation" id="Animation_7ptbs"]
 length = 0.001
@@ -38,6 +42,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"key_send_damage"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_pvg1s"]
@@ -83,20 +101,33 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ndyk"]
-size = Vector2(31, 92)
+size = Vector2(60, 157)
 
-[node name="AI_monster" type="CharacterBody2D"]
+[node name="AI_monster" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_fepny")
 
 [node name="Model" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Model"]
 texture_filter = 1
-scale = Vector2(3, 3)
+position = Vector2(-1.19209e-07, -5)
+scale = Vector2(5, 5)
 texture = SubResource("CompressedTexture2D_8t04j")
 offset = Vector2(-0.485, -25)
 hframes = 8
 vframes = 3
+
+[node name="Area2D" type="Area2D" parent="Model"]
+
+[node name="Detect_Player" type="CollisionShape2D" parent="Model/Area2D"]
+position = Vector2(1, -118)
+shape = SubResource("RectangleShape2D_0ghjo")
+debug_color = Color(0, 0.67451, 0.552941, 0.419608)
+
+[node name="Hit_Box" type="CollisionShape2D" parent="Model/Area2D"]
+position = Vector2(98, -84)
+shape = SubResource("RectangleShape2D_36q74")
+debug_color = Color(0.996078, 0, 0.219608, 0.419608)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 26.0
@@ -107,26 +138,11 @@ libraries = {
 "": SubResource("AnimationLibrary_fy76r")
 }
 
-[node name="HeathBar" type="ProgressBar" parent="."]
-offset_left = -59.0
-offset_top = -150.0
-offset_right = 60.0
-offset_bottom = -123.0
-max_value = 10.0
-value = 1.0
-metadata/_edit_use_anchors_ = true
-
-[node name="DeadSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_1fs8u")
-
-[node name="PlusHeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_kb0rl")
-
-[node name="MinusHeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_r5hdj")
+[node name="HeathBar" parent="." instance=ExtResource("2_uo8pq")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -44)
+position = Vector2(2, -78.5)
 shape = SubResource("RectangleShape2D_1ndyk")
 
-[connection signal="value_changed" from="HeathBar" to="." method="_on_heath_bar_value_changed"]
+[connection signal="body_entered" from="Model/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Model/Area2D" to="." method="_on_area_2d_body_exited"]

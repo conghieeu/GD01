@@ -1,18 +1,43 @@
-extends CharacterBody2D
+extends actor
+class_name enemy
 
 @onready var time=$Timer
 @onready var ani=$AnimationPlayer
-@export var heath = 10 # Cho phép cài đặt máu boss trên thanh inspector mặc định là 10
 
 var huong=Vector2.ZERO
 var vi_tri
 var gravity=200
 var speed=100
+var target # nếu có mục tiêu thì enemy ở trạng thái tấn công
 
 func _ready():
-	$HeathBar.value = heath # Đặt máu của nút Boss bằng máu nhập vào
+	target_group = "Player"
+	update_bar_HP()
 
 func _process(delta):
+	
+	pass
+
+func _physics_process(delta):
+	if target == null:
+		_movement_state()
+	else:
+		_attack_state()
+
+# xử lý hành vi ở trạng thái tấn công
+func _attack_state():
+	time.wait_time=26
+	huong=Vector2()
+	ani.play("atk_AI")
+	
+	# chỉnh hướng quay của thằng quái
+	if target.global_position.x - global_position.x > 0:
+		$Model.scale.x = 1
+	else:
+		$Model.scale.x = -1
+
+# xử lý hành vi ở trạng thái di chuyển
+func _movement_state():
 	if time.time_left>21:
 		huong=Vector2()
 		ani.play("idel_AI")
@@ -32,46 +57,26 @@ func _process(delta):
 		huong=Vector2(-1,0)
 		ani.play("run_AI")
 	
-func _physics_process(delta):
 	velocity=huong*speed
-	
 	if huong.x > 0:
 		$Model.scale.x = 1
 	elif huong.x < 0:
 		$Model.scale.x = -1
-	
 	move_and_slide()
-
-# nhân vật khác sẽ gọi vào đây
-func take_damage():
-	_on_minus_one_heath_pressed()
-
-# Được gọi khi nhấn nút + máu
-func _on_plus_one_heath_pressed():
+	
+# + hp
+func _on_plus_one_heath():
 	$HeathBar.value += 1
 	$PlusHeathSound.play()
 
-# Được gọi khi nhấn nút -1 máu
-func _on_minus_one_heath_pressed():
-	$HeathBar.value -= 1
-	$MinusHeathSound.play()
+# Lấy đối tượng kẻ địch
+func _on_area_2d_body_entered(body):
+	if body.is_in_group(target_group) && body != self:
+		target = body
+func _on_area_2d_body_exited(body):
+	if body.is_in_group(target_group) && body != self:
+		target = null
 
-# Được gọi khi giá trị(value) của thanh máu có sự thay đổi
-func _on_heath_bar_value_changed(value):
-	if $HeathBar.value == 0:
-		$DeadSound.play() # Nút DeadSound phát nhạc
-		print("Boss died")
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
+func key_send_damage():
+	if target != null: 
+		send_damage(target)

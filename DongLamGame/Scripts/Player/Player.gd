@@ -1,19 +1,18 @@
-extends CharacterBody2D
+extends actor
 class_name Player
 
 # Nhận trọng lực từ cài đặt dự án để được đồng bộ hóa với các nút RigidBody.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@onready var SPEED = 300.0
+@onready var JUMP_VELOCITY = -500
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+func _ready():
+	update_bar_HP()
+	target_group = "Enemy"
 
 func _process(delta):
-	if Input.is_mouse_button_pressed(1):
-		$Model/Area2D/CollisionShape2D.disabled = false
-		#$AnimatedSprite.animation = "Attack"
-	else:
-		$Model/Area2D/CollisionShape2D.disabled = true
+	attack()
 
 # Để nhân vật có thể di chuyển theo các nút
 func _physics_process(delta):
@@ -39,8 +38,13 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_area_2d_body_entered(body):
-	# nếu đối tượng va chạm có group hit thì gọi take_damge của nó
-	if body.is_in_group("Hit") && body != self:
-		print("Player hit: ", body.name)
-		body.take_damage()
+	send_damage(body)
+
+func attack():
+	if Input.is_mouse_button_pressed(1):
+		$Model/Area2D/Hit_Box.disabled = false
+		#$AnimatedSprite.animation = "Attack"
+	else:
+		$Model/Area2D/Hit_Box.disabled = true
+
 

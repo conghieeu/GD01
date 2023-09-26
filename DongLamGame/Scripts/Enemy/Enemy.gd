@@ -6,7 +6,7 @@ func _ready():
 	$HeathBar.value = heath # Đặt máu của nút Boss bằng máu nhập vào
 
 # nhân vật khác sẽ gọi vào đây
-func take_damage():
+func take_damage(damage):
 	_on_minus_one_heath_pressed()
 
 # Được gọi khi nhấn nút + máu
