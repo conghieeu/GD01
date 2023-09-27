@@ -359,7 +359,7 @@ layer_0/tile_data = PackedInt32Array(2752513, 0, 0, 2752514, 65536, 0, 2752515, 
 
 [node name="Enemys" type="Node2D" parent="."]
 
-[node name="Enemy_1" type="RigidBody2D" parent="Enemys" groups=["Hit"]]
+[node name="Enemy_1" type="RigidBody2D" parent="Enemys" groups=["Enemy"]]
 position = Vector2(602, 2224)
 script = ExtResource("8_l5d5s")
 
@@ -390,7 +390,7 @@ stream = ExtResource("11_njlsk")
 [node name="MinusHeathSound" type="AudioStreamPlayer" parent="Enemys/Enemy_1"]
 stream = ExtResource("12_fjicx")
 
-[node name="Enemy_2" type="RigidBody2D" parent="Enemys" groups=["Hit"]]
+[node name="Enemy_2" type="RigidBody2D" parent="Enemys" groups=["Enemy"]]
 position = Vector2(397, 2226)
 script = ExtResource("8_l5d5s")
 
@@ -421,7 +421,7 @@ stream = ExtResource("11_njlsk")
 [node name="MinusHeathSound" type="AudioStreamPlayer" parent="Enemys/Enemy_2"]
 stream = ExtResource("12_fjicx")
 
-[node name="Enemy_3" type="RigidBody2D" parent="Enemys" groups=["Hit"]]
+[node name="Enemy_3" type="RigidBody2D" parent="Enemys" groups=["Enemy"]]
 position = Vector2(262, 2226)
 script = ExtResource("8_l5d5s")
 
