@@ -8,7 +8,6 @@ var huong=Vector2.ZERO
 var vi_tri
 var gravity=200
 var speed=100
-var target # nếu có mục tiêu thì enemy ở trạng thái tấn công
 
 func _ready():
 	target_group = "Player"
@@ -19,6 +18,9 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
+	if is_death:
+		return
+	
 	if target == null:
 		_movement_state()
 	else:
@@ -62,6 +64,7 @@ func _movement_state():
 		$Model.scale.x = 1
 	elif huong.x < 0:
 		$Model.scale.x = -1
+		
 	move_and_slide()
 	
 # + hp
@@ -69,14 +72,4 @@ func _on_plus_one_heath():
 	$HeathBar.value += 1
 	$PlusHeathSound.play()
 
-# Lấy đối tượng kẻ địch
-func _on_area_2d_body_entered(body):
-	if body.is_in_group(target_group) && body != self:
-		target = body
-func _on_area_2d_body_exited(body):
-	if body.is_in_group(target_group) && body != self:
-		target = null
 
-func key_send_damage():
-	if target != null: 
-		send_damage(target)

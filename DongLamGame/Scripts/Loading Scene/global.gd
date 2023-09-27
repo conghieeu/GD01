@@ -39,8 +39,7 @@ func load_scene(current_scene, next_scene):
 	while true:
 		var load_progress = []
 		var load_status = ResourceLoader.load_threaded_get_status(load_path, load_progress)
-		
-		print(load_progress)
+
 #		loading_screen_instance.get_node("Control/ProgressBar").value = load_progress[0]*100
 	
 		if load_status == ResourceLoader.THREAD_LOAD_LOADED:
@@ -48,6 +47,7 @@ func load_scene(current_scene, next_scene):
 			get_tree().change_scene_to_packed(newScene)
 			loading_screen_instance.fade_out_loading_screen()
 			return
+			
 #		match load_status:
 #			0:
 #				print("error: cannot load, resource is invalid")
