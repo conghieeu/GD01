@@ -4,7 +4,7 @@ class_name npc
 @onready var interaction_area = $interaction_area
 @onready var sprite = $AnimatedSprite2D
 @onready var speech_sound = preload("res://Audio/sound_effect_coin_1.mp3")
-@onready var MarkerDialogBox = $MarkerDialogBox
+@onready var MarkerDialogBox = $Model/MarkerDialogBox
 
 var overlapping_body
 

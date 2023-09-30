@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ck67gk8qlmva4"]
+[gd_scene load_steps=20 format=3 uid="uid://ck67gk8qlmva4"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/main_menu.gd" id="1_grr7r"]
 [ext_resource type="Script" path="res://Scripts/Save Load/SaveSystem.gd" id="2_60xm8"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://kmy4njbhv2o4" path="res://Prefabs/panel_heath_enemy_demo.tscn" id="8_3b3pr"]
 [ext_resource type="PackedScene" uid="uid://sq40ret7vfy7" path="res://Prefabs/Torch_1.tscn" id="8_de88p"]
 [ext_resource type="PackedScene" uid="uid://bnrvaaswlxuhv" path="res://Prefabs/coin.tscn" id="13_e48r2"]
-[ext_resource type="PackedScene" uid="uid://d13yqlt2af8cc" path="res://Prefabs/bullet.tscn" id="14_601md"]
 [ext_resource type="PackedScene" uid="uid://qqgxt2fpvp6u" path="res://Prefabs/ai_monster.tscn" id="14_xqnco"]
 [ext_resource type="PackedScene" uid="uid://c0ey38tpt64i8" path="res://Prefabs/camera_2d.tscn" id="15_11m4l"]
 [ext_resource type="PackedScene" uid="uid://dhv5vnj65fjun" path="res://Prefabs/npc.tscn" id="15_b5bxb"]
@@ -726,11 +725,6 @@ script = ExtResource("2_60xm8")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
 environment = SubResource("Environment_esunj")
 
-[node name="EnviromentAudio" type="AudioStreamPlayer2D" parent="Enviroment"]
-stream = ExtResource("5_idd1i")
-volume_db = 24.0
-autoplay = true
-
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Enviroment"]
 color = Color(1, 1, 0.894118, 1)
 energy = 0.5
@@ -763,6 +757,11 @@ position = Vector2(1326, 2268)
 
 [node name="Torch_3" parent="Enviroment/Object" instance=ExtResource("8_de88p")]
 position = Vector2(794, 2268)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Enviroment"]
+stream = ExtResource("5_idd1i")
+volume_db = 10.0
+autoplay = true
 
 [node name="NPCs" type="Node2D" parent="."]
 
@@ -813,8 +812,6 @@ position = Vector2(803, 2194)
 mp = 66
 
 [node name="Camera2D" parent="Player" instance=ExtResource("15_11m4l")]
-
-[node name="Bullet" parent="." instance=ExtResource("14_601md")]
 
 [connection signal="pressed" from="GUI/Save, Load (Demo))/Save" to="GUI/Save, Load (Demo))" method="_on_save_button_pressed"]
 [connection signal="pressed" from="GUI/Save, Load (Demo))/Load" to="GUI/Save, Load (Demo))" method="_on_load_button_pressed"]

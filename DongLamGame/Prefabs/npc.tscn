@@ -154,6 +154,9 @@ shape = SubResource("RectangleShape2D_7kurr")
 
 [node name="Model" type="Node2D" parent="."]
 
+[node name="MarkerDialogBox" type="Marker2D" parent="Model"]
+position = Vector2(0, -90)
+
 [node name="interaction_area" type="Area2D" parent="Model"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Model/interaction_area"]
@@ -168,9 +171,6 @@ scale = Vector2(2.3, 2.3)
 sprite_frames = SubResource("SpriteFrames_kmecg")
 autoplay = "default"
 frame_progress = 0.970795
-
-[node name="MarkerDialogBox" type="Marker2D" parent="."]
-position = Vector2(0, -90)
 
 [connection signal="body_entered" from="Model/interaction_area" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="Model/interaction_area" to="." method="_on_interaction_area_body_exited"]
