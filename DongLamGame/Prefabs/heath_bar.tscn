@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://duhsmof1ih610"]
 
 [ext_resource type="Script" path="res://Scripts/heath_bar.gd" id="1_mvt3r"]
-[ext_resource type="AudioStream" uid="uid://caj23jpngif51" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-arcade-retro-game-over-213.wav" id="1_u3isa"]
-[ext_resource type="AudioStream" uid="uid://bbx7it0doysg6" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-game-treasure-coin-2038.wav" id="2_afpal"]
-[ext_resource type="AudioStream" uid="uid://cvjmnqptimvw8" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-failure-arcade-alert-notification-240.wav" id="3_75fwb"]
+[ext_resource type="AudioStream" uid="uid://caj23jpngif51" path="res://Audio/sfx/mixkit-arcade-retro-game-over-213.wav" id="1_u3isa"]
+[ext_resource type="AudioStream" uid="uid://bbx7it0doysg6" path="res://Audio/sfx/mixkit-game-treasure-coin-2038.wav" id="2_afpal"]
+[ext_resource type="AudioStream" uid="uid://cvjmnqptimvw8" path="res://Audio/sfx/mixkit-failure-arcade-alert-notification-240.wav" id="3_75fwb"]
 
 [node name="HeathBar" type="ProgressBar"]
 offset_left = -59.0

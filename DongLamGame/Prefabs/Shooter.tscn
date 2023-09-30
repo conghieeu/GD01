@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dibr7dp7x6uq8"]
+
+[ext_resource type="Script" path="res://Scripts/Actor/Shooter.gd" id="1_ep52q"]
+
+[node name="Shooter" type="Node2D"]
+script = ExtResource("1_ep52q")
+
+[node name="Turet" type="Node2D" parent="."]
+
+[node name="ShootPos" type="Marker2D" parent="Turet"]
+position = Vector2(12, 0)

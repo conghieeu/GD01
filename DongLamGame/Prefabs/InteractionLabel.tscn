@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0wvhj5qwskcp"]
+
+[ext_resource type="Script" path="res://Scripts/InteractionLabel.gd" id="1_gdtjf"]
+
+[node name="InteractionLabel" type="MarginContainer"]
+script = ExtResource("1_gdtjf")

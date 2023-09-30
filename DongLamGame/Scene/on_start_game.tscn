@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bgcyvxirwmxlj"]
 
-[ext_resource type="Script" path="res://Scripts/Loading Scene/onStartGame.gd" id="1_5p776"]
+[ext_resource type="Script" path="res://Scripts/Loading Scene/onStartGame.gd" id="1_habkl"]
 
 [sub_resource type="Animation" id="Animation_8seae"]
 resource_name = "RESET"
@@ -80,7 +80,7 @@ _data = {
 }
 
 [node name="loading_screen" type="CanvasLayer"]
-script = ExtResource("1_5p776")
+script = ExtResource("1_habkl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "dissolve"

@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://d1eopvqltfwc6"]
 
-[ext_resource type="Script" path="res://Scripts/Loading Scene/main_menu.gd" id="1_xnne4"]
+[ext_resource type="Script" path="res://Scripts/Loading Scene/main_menu.gd" id="1_jm404"]
 
 [node name="menu_scene" type="Node2D"]
-script = ExtResource("1_xnne4")
+script = ExtResource("1_jm404")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -16,37 +16,55 @@ grow_vertical = 2
 size_flags_horizontal = 8
 color = Color(0.603922, 0.407843, 0.337255, 1)
 
-[node name="scene_0" type="Button" parent="CanvasLayer"]
-offset_left = 63.0
-offset_top = 580.0
-offset_right = 458.0
-offset_bottom = 696.0
-text = "Scene prototype"
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -749.0
+offset_right = 651.0
+grow_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="Start" type="Button" parent="CanvasLayer"]
-offset_left = 63.0
-offset_top = 449.0
-offset_right = 458.0
-offset_bottom = 565.0
-text = "Start"
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="scene_2" type="Button" parent="CanvasLayer"]
-offset_left = 63.0
-offset_top = 723.0
-offset_right = 458.0
-offset_bottom = 839.0
-text = "Setting
-"
+[node name="scene_0" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "SCENE_TEST"
 
-[node name="scene_3" type="Button" parent="CanvasLayer"]
-offset_left = 63.0
-offset_top = 861.0
-offset_right = 458.0
-offset_bottom = 977.0
-text = "Creadit
-"
+[node name="btn_start" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "START"
 
-[connection signal="pressed" from="CanvasLayer/scene_0" to="." method="_on_switch_scene_0"]
-[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_switch_scene_0"]
-[connection signal="pressed" from="CanvasLayer/scene_2" to="." method="_on_switch_scene_0"]
-[connection signal="pressed" from="CanvasLayer/scene_3" to="." method="_on_switch_scene_0"]
+[node name="btn_scores" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "SCORES"
+
+[node name="btn_setting" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "SETTING"
+
+[node name="btn_credit" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "CREDITS"
+
+[node name="btn_exit" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "EXIT"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/scene_0" to="." method="_on_switch_scene_0"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/btn_start" to="." method="_on_switch_scene_0"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/btn_scores" to="." method="_on_switch_scene_0"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/btn_setting" to="." method="_on_switch_scene_0"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/btn_credit" to="." method="_on_btn_credit_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/btn_exit" to="." method="_on_btn_credit_pressed"]

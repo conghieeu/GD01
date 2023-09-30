@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ck67gk8qlmva4"]
+[gd_scene load_steps=21 format=3 uid="uid://ck67gk8qlmva4"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/main_menu.gd" id="1_grr7r"]
 [ext_resource type="Script" path="res://Scripts/Save Load/SaveSystem.gd" id="2_60xm8"]
@@ -6,11 +6,14 @@
 [ext_resource type="Script" path="res://Scripts/Save Load/TestSaveLoadPanel.gd" id="3_0lwen"]
 [ext_resource type="AudioStream" uid="uid://bavkyqkrmutf3" path="res://Audio/Forest_sound_effect_for_editing_for_(getmp3.pro).mp3" id="5_idd1i"]
 [ext_resource type="PackedScene" uid="uid://47hbgfihn7t3" path="res://Prefabs/parallax_background.tscn" id="6_scvia"]
-[ext_resource type="Texture2D" uid="uid://cgk861q8eyyqb" path="res://Tilemaps/Tileset.png" id="7_3uywg"]
+[ext_resource type="Texture2D" uid="uid://cgk861q8eyyqb" path="res://Sprites/Tilemaps/Tileset.png" id="7_l3ec1"]
 [ext_resource type="PackedScene" uid="uid://kmy4njbhv2o4" path="res://Prefabs/panel_heath_enemy_demo.tscn" id="8_3b3pr"]
 [ext_resource type="PackedScene" uid="uid://sq40ret7vfy7" path="res://Prefabs/Torch_1.tscn" id="8_de88p"]
-[ext_resource type="PackedScene" uid="uid://qqgxt2fpvp6u" path="res://Backage/AI_monster/sence/ai_monster.tscn" id="14_xqnco"]
+[ext_resource type="PackedScene" uid="uid://bnrvaaswlxuhv" path="res://Prefabs/coin.tscn" id="13_e48r2"]
+[ext_resource type="PackedScene" uid="uid://d13yqlt2af8cc" path="res://Prefabs/bullet.tscn" id="14_601md"]
+[ext_resource type="PackedScene" uid="uid://qqgxt2fpvp6u" path="res://Prefabs/ai_monster.tscn" id="14_xqnco"]
 [ext_resource type="PackedScene" uid="uid://c0ey38tpt64i8" path="res://Prefabs/camera_2d.tscn" id="15_11m4l"]
+[ext_resource type="PackedScene" uid="uid://dhv5vnj65fjun" path="res://Prefabs/npc.tscn" id="15_b5bxb"]
 [ext_resource type="PackedScene" uid="uid://bo06jlg5njyan" path="res://Prefabs/player.tscn" id="15_c70l3"]
 
 [sub_resource type="Environment" id="Environment_esunj"]
@@ -22,7 +25,7 @@ glow_bloom = 0.01
 glow_hdr_threshold = 0.08
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_17hql"]
-texture = ExtResource("7_3uywg")
+texture = ExtResource("7_l3ec1")
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -286,11 +289,12 @@ texture_region_size = Vector2i(18, 18)
 
 [sub_resource type="TileSet" id="TileSet_3bbu1"]
 tile_size = Vector2i(18, 18)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 15
+physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_17hql")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_enbjm"]
-texture = ExtResource("7_3uywg")
+texture = ExtResource("7_l3ec1")
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -558,19 +562,23 @@ texture_region_size = Vector2i(18, 18)
 
 [sub_resource type="TileSet" id="TileSet_4e5ig"]
 tile_size = Vector2i(18, 18)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 15
+physics_layer_0/collision_mask = 15
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Autotile"
 terrain_set_0/terrain_0/color = Color(1, 0, 0, 1)
 sources/0 = SubResource("TileSetAtlasSource_enbjm")
 
-[node name="next_scene" type="Node"]
+[node name="scene_0" type="Node"]
 script = ExtResource("1_grr7r")
+metadata/_edit_horizontal_guides_ = []
 
-[node name="UI_Player" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_kx1qq")]
-player = NodePath("../Player")
+[node name="GUI" type="Node2D" parent="."]
 
-[node name="Save, Load (Demo))" type="ColorRect" parent="."]
+[node name="UI_Player" parent="GUI" node_paths=PackedStringArray("player") instance=ExtResource("2_kx1qq")]
+player = NodePath("../../Player")
+
+[node name="Save, Load (Demo))" type="ColorRect" parent="GUI"]
 offset_left = 1068.0
 offset_top = 2109.0
 offset_right = 1287.0
@@ -578,7 +586,7 @@ offset_bottom = 2257.0
 color = Color(0.427451, 0.517647, 0.329412, 1)
 script = ExtResource("3_0lwen")
 
-[node name="a" type="RichTextLabel" parent="Save, Load (Demo))"]
+[node name="a" type="RichTextLabel" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 50.0
@@ -586,7 +594,7 @@ offset_right = 72.0
 offset_bottom = 76.0
 text = "0"
 
-[node name="b" type="RichTextLabel" parent="Save, Load (Demo))"]
+[node name="b" type="RichTextLabel" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 99.0
 offset_top = 50.0
@@ -594,7 +602,7 @@ offset_right = 131.0
 offset_bottom = 76.0
 text = "0"
 
-[node name="c" type="RichTextLabel" parent="Save, Load (Demo))"]
+[node name="c" type="RichTextLabel" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 161.0
 offset_top = 50.0
@@ -602,7 +610,7 @@ offset_right = 193.0
 offset_bottom = 76.0
 text = "0"
 
-[node name="Save" type="Button" parent="Save, Load (Demo))"]
+[node name="Save" type="Button" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 125.0
 offset_top = 5.0
@@ -611,7 +619,7 @@ offset_bottom = 36.0
 focus_mode = 0
 text = "Save Data"
 
-[node name="Load" type="Button" parent="Save, Load (Demo))"]
+[node name="Load" type="Button" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 5.0
@@ -621,7 +629,7 @@ focus_mode = 0
 text = "Load Data
 "
 
-[node name="a+" type="Button" parent="Save, Load (Demo))" node_paths=PackedStringArray("shortcut_context")]
+[node name="a+" type="Button" parent="GUI/Save, Load (Demo))" node_paths=PackedStringArray("shortcut_context")]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 77.0
@@ -632,7 +640,7 @@ shortcut_context = NodePath("..")
 text = "+
 "
 
-[node name="a-" type="Button" parent="Save, Load (Demo))"]
+[node name="a-" type="Button" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 77.0
@@ -641,7 +649,7 @@ offset_bottom = 98.0
 focus_mode = 1
 text = "-"
 
-[node name="b+" type="Button" parent="Save, Load (Demo))"]
+[node name="b+" type="Button" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 81.0
 offset_top = 77.0
@@ -650,7 +658,7 @@ offset_bottom = 98.0
 focus_mode = 1
 text = "+"
 
-[node name="b-" type="Button" parent="Save, Load (Demo))"]
+[node name="b-" type="Button" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 105.0
 offset_top = 77.0
@@ -659,7 +667,7 @@ offset_bottom = 98.0
 focus_mode = 1
 text = "-"
 
-[node name="c+" type="Button" parent="Save, Load (Demo))"]
+[node name="c+" type="Button" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 147.0
 offset_top = 77.0
@@ -668,7 +676,7 @@ offset_bottom = 98.0
 focus_mode = 1
 text = "+"
 
-[node name="c-" type="Button" parent="Save, Load (Demo))"]
+[node name="c-" type="Button" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 171.0
 offset_top = 77.0
@@ -678,7 +686,7 @@ focus_mode = 1
 text = "-
 "
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Save, Load (Demo))"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 119.0
@@ -686,14 +694,14 @@ offset_right = 211.0
 offset_bottom = 145.0
 text = "Bảng Save, Load (Test)"
 
-[node name="ChangeScene" type="ColorRect" parent="."]
+[node name="ChangeScene" type="ColorRect" parent="GUI"]
 offset_left = 1464.0
 offset_top = 2159.0
 offset_right = 1588.0
 offset_bottom = 2256.0
 color = Color(0, 0.619608, 0.619608, 1)
 
-[node name="Button" type="Button" parent="ChangeScene"]
+[node name="Button" type="Button" parent="GUI/ChangeScene"]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 46.0
@@ -702,7 +710,7 @@ offset_bottom = 78.0
 text = "Scene_1
 "
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ChangeScene"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GUI/ChangeScene"]
 layout_mode = 0
 offset_right = 123.0
 offset_bottom = 27.0
@@ -756,6 +764,41 @@ position = Vector2(1326, 2268)
 [node name="Torch_3" parent="Enviroment/Object" instance=ExtResource("8_de88p")]
 position = Vector2(794, 2268)
 
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="NPC_1" parent="NPCs" instance=ExtResource("15_b5bxb")]
+position = Vector2(2226, 2266)
+
+[node name="DropItem" type="Node2D" parent="."]
+
+[node name="Coin" parent="DropItem" instance=ExtResource("13_e48r2")]
+position = Vector2(1723, 2240)
+lock_rotation = true
+
+[node name="Coin2" parent="DropItem" instance=ExtResource("13_e48r2")]
+position = Vector2(1785, 2239)
+lock_rotation = true
+
+[node name="Coin3" parent="DropItem" instance=ExtResource("13_e48r2")]
+position = Vector2(1847, 2238)
+lock_rotation = true
+
+[node name="Coin4" parent="DropItem" instance=ExtResource("13_e48r2")]
+position = Vector2(1663, 2237)
+lock_rotation = true
+
+[node name="Coin5" parent="DropItem" instance=ExtResource("13_e48r2")]
+position = Vector2(1696, 2156)
+lock_rotation = true
+
+[node name="Coin6" parent="DropItem" instance=ExtResource("13_e48r2")]
+position = Vector2(1756, 2178)
+lock_rotation = true
+
+[node name="Coin7" parent="DropItem" instance=ExtResource("13_e48r2")]
+position = Vector2(1781, 2126)
+lock_rotation = true
+
 [node name="Enemys" type="Node2D" parent="."]
 
 [node name="Panel Heath Enemy Demo" parent="Enemys" instance=ExtResource("8_3b3pr")]
@@ -763,24 +806,24 @@ position = Vector2(537, 2266)
 scale = Vector2(1, 1)
 
 [node name="AI_monster" parent="Enemys" instance=ExtResource("14_xqnco")]
-position = Vector2(260, 2268)
+position = Vector2(260, 2176)
 
 [node name="Player" parent="." instance=ExtResource("15_c70l3")]
 position = Vector2(803, 2194)
-max_hp = 1
-hp = 1
 mp = 66
 
 [node name="Camera2D" parent="Player" instance=ExtResource("15_11m4l")]
 
-[connection signal="pressed" from="Save, Load (Demo))/Save" to="Save, Load (Demo))" method="_on_save_button_pressed"]
-[connection signal="pressed" from="Save, Load (Demo))/Load" to="Save, Load (Demo))" method="_on_load_button_pressed"]
-[connection signal="pressed" from="Save, Load (Demo))/a+" to="Save, Load (Demo))" method="_on_plus_a_pressed"]
-[connection signal="pressed" from="Save, Load (Demo))/a-" to="Save, Load (Demo))" method="_on_minus_a_pressed"]
-[connection signal="pressed" from="Save, Load (Demo))/b+" to="Save, Load (Demo))" method="_on_plus_b_pressed"]
-[connection signal="pressed" from="Save, Load (Demo))/b-" to="Save, Load (Demo))" method="_on_minus_b_pressed"]
-[connection signal="pressed" from="Save, Load (Demo))/c+" to="Save, Load (Demo))" method="_on_plus_c_pressed"]
-[connection signal="pressed" from="Save, Load (Demo))/c-" to="Save, Load (Demo))" method="_on_minus_c_pressed"]
-[connection signal="pressed" from="ChangeScene/Button" to="." method="_on_switch_scene_1"]
+[node name="Bullet" parent="." instance=ExtResource("14_601md")]
 
-[editable path="UI_Player"]
+[connection signal="pressed" from="GUI/Save, Load (Demo))/Save" to="GUI/Save, Load (Demo))" method="_on_save_button_pressed"]
+[connection signal="pressed" from="GUI/Save, Load (Demo))/Load" to="GUI/Save, Load (Demo))" method="_on_load_button_pressed"]
+[connection signal="pressed" from="GUI/Save, Load (Demo))/a+" to="GUI/Save, Load (Demo))" method="_on_plus_a_pressed"]
+[connection signal="pressed" from="GUI/Save, Load (Demo))/a-" to="GUI/Save, Load (Demo))" method="_on_minus_a_pressed"]
+[connection signal="pressed" from="GUI/Save, Load (Demo))/b+" to="GUI/Save, Load (Demo))" method="_on_plus_b_pressed"]
+[connection signal="pressed" from="GUI/Save, Load (Demo))/b-" to="GUI/Save, Load (Demo))" method="_on_minus_b_pressed"]
+[connection signal="pressed" from="GUI/Save, Load (Demo))/c+" to="GUI/Save, Load (Demo))" method="_on_plus_c_pressed"]
+[connection signal="pressed" from="GUI/Save, Load (Demo))/c-" to="GUI/Save, Load (Demo))" method="_on_minus_c_pressed"]
+[connection signal="pressed" from="GUI/ChangeScene/Button" to="." method="_on_switch_scene_1"]
+
+[editable path="GUI/UI_Player"]

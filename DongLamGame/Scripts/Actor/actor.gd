@@ -7,9 +7,15 @@ class_name actor
 @export var max_mp = 10
 @export var mp = 10
 @export var physicDamage = 1
+@export var count_item_drop = 3
+@export var item_drop = preload("res://Prefabs/coin.tscn")
+
+# Nhận trọng lực từ cài đặt dự án để được đồng bộ hóa với các nút RigidBody.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var is_death = false
 var target # nếu có mục tiêu thì enemy ở trạng thái tấn công
+
 
 # trừ damage
 func take_damage(damage):
@@ -37,11 +43,13 @@ func send_damage():
 			print("Player hit: ", target.name)
 			target.take_damage(physicDamage)
 
+# được gọi cùng với take_damage
 func on_death():
 	if hp <= 0:
 		$HeathBar.play_dead_sound()
 		$AnimationPlayer.play("Death")
 		is_death = true
+		drop_item()
 
 # tỷ lệ phần trăm máu còn lại
 func remaining_hp() -> float:
@@ -49,6 +57,20 @@ func remaining_hp() -> float:
 	
 func remaining_mp() -> float:
 	return mp * 1.0 / max_mp
+
+func set_velocity_y(delta):
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+# rớt vật phẩm
+func drop_item():
+	print(self.name + ": Drop item")
+	var item = item_drop.instantiate()
+	get_tree().root.add_child(item)
+	
+	# rớt với số lượng
+	for n in count_item_drop:
+		item.global_position = global_position
 
 func update_bar_HP():
 	if hp <= 0:

@@ -287,7 +287,8 @@ texture_region_size = Vector2i(18, 18)
 
 [sub_resource type="TileSet" id="TileSet_3bbu1"]
 tile_size = Vector2i(18, 18)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 15
+physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_17hql")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwa8j"]
@@ -361,6 +362,8 @@ layer_0/tile_data = PackedInt32Array(2752513, 0, 0, 2752514, 65536, 0, 2752515, 
 
 [node name="Enemy_1" type="RigidBody2D" parent="Enemys" groups=["Enemy"]]
 position = Vector2(602, 2224)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("8_l5d5s")
 
 [node name="Sprite" type="Sprite2D" parent="Enemys/Enemy_1"]

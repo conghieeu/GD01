@@ -1,8 +1,115 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc2k2as4vjbj3"]
+[gd_scene load_steps=20 format=3 uid="uid://dc2k2as4vjbj3"]
 
 [ext_resource type="Script" path="res://Scripts/UI/canvas_layer_player.gd" id="1_1arwj"]
 [ext_resource type="PackedScene" uid="uid://bv7xkivrchscn" path="res://Prefabs/TextureProgess.tscn" id="1_fwr2c"]
 [ext_resource type="Texture2D" uid="uid://j1wouckccd57" path="res://Sprites/icon.svg" id="2_pilo3"]
+[ext_resource type="Texture2D" uid="uid://t04usqve5na5" path="res://Sprites/Coin/coin2_16x16.png" id="4_ph7ca"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3psk"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53jm7"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f5rh"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqkpv"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv84x"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a12u"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxm47"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m82g2"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ss6h"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5f0a"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sggfu"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpsbs"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13snp"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw5bo"]
+atlas = ExtResource("4_ph7ca")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nghoc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3psk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53jm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f5rh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqkpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv84x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a12u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxm47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m82g2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ss6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5f0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sggfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpsbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13snp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cw5bo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
 
 [node name="PlayerLayer" type="CanvasLayer"]
 script = ExtResource("1_1arwj")
@@ -26,3 +133,24 @@ tint_progress = Color(0.054902, 0.666667, 1, 1)
 position = Vector2(108.75, 108.75)
 scale = Vector2(1.05078, 1.05078)
 texture = ExtResource("2_pilo3")
+
+[node name="IconCoin" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1856, 64)
+scale = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_nghoc")
+autoplay = "default"
+frame_progress = 0.0443139
+
+[node name="TxtCoin" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -304.0
+offset_top = 16.0
+offset_right = -122.0
+offset_bottom = 96.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 56
+text = "00"
+horizontal_alignment = 2
