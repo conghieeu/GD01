@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ck67gk8qlmva4"]
+[gd_scene load_steps=21 format=3 uid="uid://ck67gk8qlmva4"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/main_menu.gd" id="1_grr7r"]
 [ext_resource type="Script" path="res://Scripts/Save Load/SaveSystem.gd" id="2_60xm8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cgk861q8eyyqb" path="res://Sprites/Tilemaps/Tileset.png" id="7_l3ec1"]
 [ext_resource type="PackedScene" uid="uid://kmy4njbhv2o4" path="res://Prefabs/panel_heath_enemy_demo.tscn" id="8_3b3pr"]
 [ext_resource type="PackedScene" uid="uid://sq40ret7vfy7" path="res://Prefabs/Torch_1.tscn" id="8_de88p"]
+[ext_resource type="PackedScene" uid="uid://br6i0aqm38jfq" path="res://Prefabs/skeleton.tscn" id="13_e6fr7"]
 [ext_resource type="PackedScene" uid="uid://bnrvaaswlxuhv" path="res://Prefabs/coin.tscn" id="13_e48r2"]
 [ext_resource type="PackedScene" uid="uid://qqgxt2fpvp6u" path="res://Prefabs/ai_monster.tscn" id="14_xqnco"]
 [ext_resource type="PackedScene" uid="uid://c0ey38tpt64i8" path="res://Prefabs/camera_2d.tscn" id="15_11m4l"]
@@ -804,8 +805,11 @@ lock_rotation = true
 position = Vector2(537, 2266)
 scale = Vector2(1, 1)
 
-[node name="AI_monster" parent="Enemys" instance=ExtResource("14_xqnco")]
+[node name="quai_vat_nam" parent="Enemys" instance=ExtResource("14_xqnco")]
 position = Vector2(260, 2176)
+
+[node name="Skeleton" parent="Enemys" instance=ExtResource("13_e6fr7")]
+position = Vector2(1461, 2265)
 
 [node name="Player" parent="." instance=ExtResource("15_c70l3")]
 position = Vector2(803, 2194)

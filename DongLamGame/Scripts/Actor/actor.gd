@@ -6,6 +6,10 @@ class_name actor
 @export var hp = 10
 @export var max_mp = 10
 @export var mp = 10
+@export var max_def = 0
+@export var def = 0
+@export var max_speed = 100
+@export var speed = 50
 @export var physicDamage = 1
 @export var count_item_drop = 3
 @export var item_drop = preload("res://Prefabs/coin.tscn")
@@ -23,7 +27,11 @@ func take_damage(damage):
 	if hp <= 0:
 		return
 	
-	hp -= damage
+	var damage_in = damage - def
+	if damage_in < 0:
+		damage_in = 0
+	hp -= damage_in 
+	
 	update_bar_HP()
 	$HeathBar.play_minus_heath_sound()
 	on_death()
