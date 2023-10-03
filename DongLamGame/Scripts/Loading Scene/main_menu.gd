@@ -8,3 +8,4 @@ func _on_switch_scene_1():
 
 func _on_btn_credit_pressed():
 	Global.instance_credit_scene()
+

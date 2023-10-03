@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://ck67gk8qlmva4"]
+[gd_scene load_steps=22 format=3 uid="uid://ck67gk8qlmva4"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/main_menu.gd" id="1_grr7r"]
 [ext_resource type="Script" path="res://Scripts/Save Load/SaveSystem.gd" id="2_60xm8"]
 [ext_resource type="PackedScene" uid="uid://dc2k2as4vjbj3" path="res://Prefabs/canvas_layer_player.tscn" id="2_kx1qq"]
 [ext_resource type="Script" path="res://Scripts/Save Load/TestSaveLoadPanel.gd" id="3_0lwen"]
+[ext_resource type="PackedScene" uid="uid://bomo7ffcoj3tg" path="res://Prefabs/Settings.tscn" id="3_5oy1f"]
 [ext_resource type="AudioStream" uid="uid://bavkyqkrmutf3" path="res://Audio/Forest_sound_effect_for_editing_for_(getmp3.pro).mp3" id="5_idd1i"]
 [ext_resource type="PackedScene" uid="uid://47hbgfihn7t3" path="res://Prefabs/parallax_background.tscn" id="6_scvia"]
 [ext_resource type="Texture2D" uid="uid://cgk861q8eyyqb" path="res://Sprites/Tilemaps/Tileset.png" id="7_l3ec1"]
@@ -577,6 +578,11 @@ metadata/_edit_horizontal_guides_ = []
 
 [node name="UI_Player" parent="GUI" node_paths=PackedStringArray("player") instance=ExtResource("2_kx1qq")]
 player = NodePath("../../Player")
+
+[node name="Systems" type="CanvasLayer" parent="GUI"]
+
+[node name="Settings" parent="GUI/Systems" instance=ExtResource("3_5oy1f")]
+visible = false
 
 [node name="Save, Load (Demo))" type="ColorRect" parent="GUI"]
 offset_left = 1068.0

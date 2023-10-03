@@ -69,6 +69,7 @@ func movement(delta):
 	
 	# tăng tốc khi roll
 	if is_rolling:
+		velocity.y = 0
 		velocity.x = $Model.scale.x * 400
 	
 	# scale
