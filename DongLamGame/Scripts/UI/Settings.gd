@@ -1,4 +1,5 @@
 extends Control
+# khi nhấn ecs thì bản này hiện ra
 
 @onready var menu = $Menu
 @onready var options = $Options

@@ -19,7 +19,7 @@ func _ready():
 	textb = $b
 	textc = $c
 	load_data()
-	
+
 func _process(delta):
 	texta.text = str(a);
 	textb.text = str(b);

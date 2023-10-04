@@ -20,6 +20,7 @@ config/icon="res://Sprites/icon.svg"
 Global="*res://Scripts/Loading Scene/global.gd"
 DialogManager="*res://Scripts/DialogManager.gd"
 InteractionLabel="*res://Scripts/InteractionLabel.gd"
+SaveSystem="*res://Scripts/Save Load/SaveSystem.gd"
 
 [display]
 
@@ -77,7 +78,7 @@ Attack={
 
 [layer_names]
 
-2d_physics/layer_1="World"
+2d_physics/layer_1="Player"
 
 [rendering]
 

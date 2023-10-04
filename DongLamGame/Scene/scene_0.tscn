@@ -1,7 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://ck67gk8qlmva4"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/main_menu.gd" id="1_grr7r"]
-[ext_resource type="Script" path="res://Scripts/Save Load/SaveSystem.gd" id="2_60xm8"]
 [ext_resource type="PackedScene" uid="uid://dc2k2as4vjbj3" path="res://Prefabs/canvas_layer_player.tscn" id="2_kx1qq"]
 [ext_resource type="Script" path="res://Scripts/Save Load/TestSaveLoadPanel.gd" id="3_0lwen"]
 [ext_resource type="PackedScene" uid="uid://bomo7ffcoj3tg" path="res://Prefabs/Settings.tscn" id="3_5oy1f"]
@@ -14,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bnrvaaswlxuhv" path="res://Prefabs/coin.tscn" id="13_e48r2"]
 [ext_resource type="PackedScene" uid="uid://qqgxt2fpvp6u" path="res://Prefabs/ai_monster.tscn" id="14_xqnco"]
 [ext_resource type="PackedScene" uid="uid://c0ey38tpt64i8" path="res://Prefabs/camera_2d.tscn" id="15_11m4l"]
+[ext_resource type="PackedScene" uid="uid://p0xntkisj5qk" path="res://Prefabs/enemy_archers.tscn" id="15_71mli"]
 [ext_resource type="PackedScene" uid="uid://dhv5vnj65fjun" path="res://Prefabs/npc.tscn" id="15_b5bxb"]
 [ext_resource type="PackedScene" uid="uid://bo06jlg5njyan" path="res://Prefabs/player.tscn" id="15_c70l3"]
 
@@ -579,9 +579,7 @@ metadata/_edit_horizontal_guides_ = []
 [node name="UI_Player" parent="GUI" node_paths=PackedStringArray("player") instance=ExtResource("2_kx1qq")]
 player = NodePath("../../Player")
 
-[node name="Systems" type="CanvasLayer" parent="GUI"]
-
-[node name="Settings" parent="GUI/Systems" instance=ExtResource("3_5oy1f")]
+[node name="Settings" parent="GUI/UI_Player" instance=ExtResource("3_5oy1f")]
 visible = false
 
 [node name="Save, Load (Demo))" type="ColorRect" parent="GUI"]
@@ -722,11 +720,6 @@ offset_right = 123.0
 offset_bottom = 27.0
 text = "Đi sang cảnh 1"
 
-[node name="Systems" type="Node2D" parent="."]
-
-[node name="SaveSystem" type="Node2D" parent="Systems"]
-script = ExtResource("2_60xm8")
-
 [node name="Enviroment" type="Node2D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
@@ -816,6 +809,9 @@ position = Vector2(260, 2176)
 
 [node name="Skeleton" parent="Enemys" instance=ExtResource("13_e6fr7")]
 position = Vector2(1461, 2265)
+
+[node name="EnemyArchers" parent="Enemys" instance=ExtResource("15_71mli")]
+position = Vector2(1933, 2242)
 
 [node name="Player" parent="." instance=ExtResource("15_c70l3")]
 position = Vector2(803, 2194)

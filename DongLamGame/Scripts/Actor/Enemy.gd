@@ -10,9 +10,6 @@ func _ready():
 	target_group = "Player"
 	update_bar_HP()
 
-func _process(delta):
-	
-	pass
 
 func _physics_process(delta):
 	set_velocity_y(delta)
@@ -67,9 +64,7 @@ func _movement_state(delta):
 	elif huong < 0:
 		$Model.scale.x = -1
 
-# + h
+
 func _on_plus_one_heath():
 	$HeathBar.value += 1
 	$PlusHeathSound.play()
-
-

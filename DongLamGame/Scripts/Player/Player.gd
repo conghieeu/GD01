@@ -38,6 +38,16 @@ func _on_touching_coin(body):
 		body.queue_free()
 
 
+func shoot_to_mouse():
+#	# Điều kiện bắn đạn
+#	if Input.is_mouse_button_pressed(1):
+#		shoot()
+#
+#	# xoay turet, hướng nòng súng vào con trỏ chuột
+#	$Turet.look_at(get_global_mouse_position())
+	pass
+
+
 func movement(delta):
 	set_velocity_y(delta)
 	
@@ -47,7 +57,7 @@ func movement(delta):
 		return
 	
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and !is_rolling:
 		velocity.y = JUMP_VELOCITY
 	
 	# set velocity
@@ -69,7 +79,6 @@ func movement(delta):
 	
 	# tăng tốc khi roll
 	if is_rolling:
-		velocity.y = 0
 		velocity.x = $Model.scale.x * 400
 	
 	# scale
@@ -98,6 +107,7 @@ func handle_roll():
 		anim.play("Roll")
 		await get_tree().create_timer(anim.current_animation_length).timeout
 		is_rolling = false
+
 
 func handle_skill_1():
 	if Input.is_action_pressed("Skill_1"):

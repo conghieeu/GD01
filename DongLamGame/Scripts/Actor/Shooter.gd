@@ -1,20 +1,15 @@
 extends Node2D
 
-const bulletPath = preload("res://Prefabs/bullet.tscn")
-
-func _process(delta):
-	# Điều kiện bắn đạn
-	if Input.is_mouse_button_pressed(1):
-		shoot()
-
-	# xoay turet, hướng nòng súng vào con trỏ chuột
-	$Turet.look_at(get_global_mouse_position())
+@export var actor: actor
+const bulletPath = preload("res://Prefabs/Arrow_1.tscn")
 
 func shoot():
-	# instance đạn
+	# spawn đạn
 	var bullet = bulletPath.instantiate()
-	get_parent().add_child(bullet)
-
-	# thiết lập velocity viên đạn
-	bullet.position = $Turet/ShootPos.global_position
-	bullet.direction = get_global_mouse_position() - bullet.position
+	
+	# thiết lập viên đạn
+	bullet.global_position = $Turet/ShootPos.global_position
+	bullet.direction = $Turet/ShootPos.global_position - $Turet.global_position
+	bullet.target_group = actor.target_group
+	
+	get_tree().get_root().add_child(bullet)

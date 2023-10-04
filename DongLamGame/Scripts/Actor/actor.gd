@@ -41,14 +41,14 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group(target_group) && body != self:
 		target = body
 func _on_area_2d_body_exited(body):
-	if body.is_in_group(target_group) && body != self:
+	if body == target:
 		target = null
 
 # nếu đối tượng va chạm có group hit thì gọi take_damge của nó
 func send_damage():
 	if target != null:
 		if target.is_in_group(target_group) && target != self:
-			print("Player hit: ", target.name)
+			print(self.name, " hit: ", target.name)
 			target.take_damage(physicDamage)
 
 # được gọi cùng với take_damage
