@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var actor: actor
+@export var actor: Actor
 const bulletPath = preload("res://Prefabs/Arrow_1.tscn")
 
 func shoot():

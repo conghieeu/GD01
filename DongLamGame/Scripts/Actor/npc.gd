@@ -1,4 +1,4 @@
-extends actor
+extends Actor
 class_name npc
 
 @onready var interaction_area = $interaction_area

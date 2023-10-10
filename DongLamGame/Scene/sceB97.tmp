@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://ck67gk8qlmva4"]
+[gd_scene load_steps=23 format=3 uid="uid://ck67gk8qlmva4"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/MainScene.gd" id="1_yfges"]
 [ext_resource type="PackedScene" uid="uid://dc2k2as4vjbj3" path="res://Prefabs/canvas_layer_player.tscn" id="2_kx1qq"]
+[ext_resource type="Script" path="res://Scripts/Save Load/SaveGame.gd" id="2_xsmei"]
 [ext_resource type="Script" path="res://Scripts/Save Load/TestSaveLoadPanel.gd" id="3_0lwen"]
 [ext_resource type="PackedScene" uid="uid://bomo7ffcoj3tg" path="res://Prefabs/Settings.tscn" id="3_5oy1f"]
 [ext_resource type="AudioStream" uid="uid://bavkyqkrmutf3" path="res://Audio/Forest_sound_effect_for_editing_for_(getmp3.pro).mp3" id="5_idd1i"]
@@ -573,6 +574,11 @@ sources/0 = SubResource("TileSetAtlasSource_enbjm")
 [node name="scene_0" type="Node"]
 script = ExtResource("1_yfges")
 metadata/_edit_horizontal_guides_ = []
+
+[node name="Systems" type="Node2D" parent="."]
+
+[node name="SaveGame" type="Node2D" parent="Systems"]
+script = ExtResource("2_xsmei")
 
 [node name="GUI" type="Node2D" parent="."]
 

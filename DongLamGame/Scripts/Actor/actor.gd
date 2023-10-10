@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name actor
+class_name Actor
 
 @onready var target_group : String
 @export var max_hp = 10

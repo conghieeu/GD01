@@ -1,5 +1,5 @@
-extends actor
-class_name enemy
+extends Actor
+class_name Enemy
 
 @onready var time=$Timer
 @onready var ani=$AnimationPlayer

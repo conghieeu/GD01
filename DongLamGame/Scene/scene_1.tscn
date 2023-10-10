@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://c0yvar2yyj58a"]
 
-[ext_resource type="Script" path="res://Scripts/Loading Scene/main_menu.gd" id="1_rx8jg"]
+[ext_resource type="Script" path="res://Scripts/Loading Scene/MainScene.gd" id="1_rx8jg"]
 [ext_resource type="Script" path="res://Scripts/Save Load/SaveSystem.gd" id="2_20cpg"]
 [ext_resource type="AudioStream" uid="uid://bavkyqkrmutf3" path="res://Audio/Forest_sound_effect_for_editing_for_(getmp3.pro).mp3" id="4_4q1wf"]
 [ext_resource type="PackedScene" uid="uid://47hbgfihn7t3" path="res://Prefabs/parallax_background.tscn" id="5_qtwri"]

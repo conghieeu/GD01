@@ -1,5 +1,5 @@
-extends actor
 class_name Player
+extends Actor
 
 var gameOverScreen = preload("res://Scene/game_over_screen.tscn")
 
@@ -25,6 +25,7 @@ func _process(delta):
 			handle_attack()
 			handle_skill_1()
 		handle_animation()
+
 
 # Để nhân vật có thể di chuyển theo các nút
 func _physics_process(delta):
@@ -142,7 +143,6 @@ func handle_player_win():
 	add_child(game_over)
 	game_over.set_title(true)
 	get_tree().paused = true
-	pass
 
 
 func handle_player_lost():
