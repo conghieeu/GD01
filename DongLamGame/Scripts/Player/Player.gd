@@ -1,7 +1,7 @@
 class_name Player
 extends Actor
 
-var gameOverScreen = preload("res://Scene/game_over_screen.tscn")
+@onready var main_scene = "../.."
 
 @export var coin = 0
 @export var SPEED = 300.0
@@ -10,9 +10,13 @@ var gameOverScreen = preload("res://Scene/game_over_screen.tscn")
 @export var is_rolling = false # không thể ngắt, thay đổi tốc độ
 @export var is_using_skill_1 = false # chỉ ngắt khi nhả phím
 
+var gameOverScreen = preload("res://Scene/game_over_screen.tscn")
 var anim
+var save_system_instance = SaveSystem.new()
+var playerData = PlayerData.new()
 
 func _ready():
+	load_data()
 	anim = $AnimationPlayer
 	target_group = "Enemy"
 	update_bar_HP()
@@ -30,6 +34,12 @@ func _process(delta):
 # Để nhân vật có thể di chuyển theo các nút
 func _physics_process(delta):
 	movement(delta)
+	save_data()
+
+
+func take_damage(damage):
+	super.take_damage(damage)
+	playerData.health = hp
 
 
 func _on_touching_coin(body):
@@ -37,6 +47,7 @@ func _on_touching_coin(body):
 		coin = coin + 1
 		$audio_plus_coin.play()
 		body.queue_free()
+		playerData.coins = coin
 
 
 func shoot_to_mouse():
@@ -87,6 +98,8 @@ func movement(delta):
 		$Model.scale.x = 1
 	elif velocity.x < 0:
 		$Model.scale.x = -1
+	
+	playerData.global_position = self.global_position
 	
 	move_and_slide()
 
@@ -152,3 +165,13 @@ func handle_player_lost():
 	get_tree().paused = true
 	pass
 
+
+func save_data():
+	save_system_instance.save_data_player(playerData)
+
+
+func load_data():
+	playerData = save_system_instance.load_data_player()
+	coin = playerData.coins
+	hp = playerData.health
+	self.global_position = playerData.global_position

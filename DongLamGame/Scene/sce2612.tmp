@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/MainScene.gd" id="1_yfges"]
 [ext_resource type="PackedScene" uid="uid://dc2k2as4vjbj3" path="res://Prefabs/canvas_layer_player.tscn" id="2_kx1qq"]
+[ext_resource type="Script" path="res://Scripts/Save Load/TestSaveLoadPanel.gd" id="3_0lwen"]
 [ext_resource type="PackedScene" uid="uid://bomo7ffcoj3tg" path="res://Prefabs/Settings.tscn" id="3_5oy1f"]
 [ext_resource type="AudioStream" uid="uid://bavkyqkrmutf3" path="res://Audio/Forest_sound_effect_for_editing_for_(getmp3.pro).mp3" id="5_idd1i"]
 [ext_resource type="PackedScene" uid="uid://47hbgfihn7t3" path="res://Prefabs/parallax_background.tscn" id="6_scvia"]
@@ -15,76 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://p0xntkisj5qk" path="res://Prefabs/enemy_archers.tscn" id="15_71mli"]
 [ext_resource type="PackedScene" uid="uid://dhv5vnj65fjun" path="res://Prefabs/npc.tscn" id="15_b5bxb"]
 [ext_resource type="PackedScene" uid="uid://bo06jlg5njyan" path="res://Prefabs/player.tscn" id="15_c70l3"]
-
-[sub_resource type="GDScript" id="GDScript_r6vug"]
-script/source = "extends ColorRect
-
-# tạo file save ở máy người dùng
-# const SAVE_PATH = \"user://save_file.save\"
-
-# tạo file save ở dự án này
-const SAVE_PATH = \"res://save_file.save\"
-
-var a = 0
-var b = 0
-var c = 0
-
-var texta
-var textb
-var textc
-
-func _ready():
-	texta = $a
-	textb = $b
-	textc = $c
-	load_data()
-
-func _process(delta):
-	texta.text = str(a);
-	textb.text = str(b);
-	textc.text = str(c);
-
-func _on_minus_a_pressed():
-	a -= 1
-func _on_plus_a_pressed():
-	a += 1
-func _on_minus_b_pressed():
-	b -= 1
-func _on_plus_b_pressed():
-	b += 1
-func _on_minus_c_pressed():
-	c -= 1
-func _on_plus_c_pressed():
-	c += 1
-
-# được gọi khi nhấn nút save
-func _on_save_button_pressed(): 
-	save()
-
-# được gọi khi nhấn nút load
-func  _on_load_button_pressed():
-	load_data()
-	
-# save dữ liệu
-func save():
-	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	file.store_var(a)
-	file.store_var(b)
-	file.store_var(c)
-
-# load dữ liệu từ path Save Path
-func load_data():
-	if FileAccess.file_exists(SAVE_PATH):
-		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-		a = file.get_var(a)
-		b = file.get_var(b)
-		c = file.get_var(c)
-	else:
-		print(\"no data saved...\")
-		a = 0
-		b = 0
-		c = 0
-"
 
 [sub_resource type="Environment" id="Environment_esunj"]
 background_mode = 3
@@ -645,8 +576,7 @@ metadata/_edit_horizontal_guides_ = []
 
 [node name="GUI" type="Node2D" parent="."]
 
-[node name="UI_Player" parent="GUI" node_paths=PackedStringArray("player") instance=ExtResource("2_kx1qq")]
-player = NodePath("../../Player")
+[node name="UI_Player" parent="GUI" instance=ExtResource("2_kx1qq")]
 
 [node name="Settings" parent="GUI/UI_Player" instance=ExtResource("3_5oy1f")]
 visible = false
@@ -657,7 +587,7 @@ offset_top = 2109.0
 offset_right = 1287.0
 offset_bottom = 2257.0
 color = Color(0.427451, 0.517647, 0.329412, 1)
-script = SubResource("GDScript_r6vug")
+script = ExtResource("3_0lwen")
 
 [node name="a" type="RichTextLabel" parent="GUI/Save, Load (Demo))"]
 layout_mode = 0
@@ -888,7 +818,6 @@ mp = 66
 
 [node name="Camera2D" parent="Player" instance=ExtResource("15_11m4l")]
 
-[connection signal="pressed" from="GUI/Save, Load (Demo))/Save" to="." method="_save_game"]
 [connection signal="pressed" from="GUI/Save, Load (Demo))/Save" to="GUI/Save, Load (Demo))" method="_on_save_button_pressed"]
 [connection signal="pressed" from="GUI/Save, Load (Demo))/Load" to="GUI/Save, Load (Demo))" method="_on_load_button_pressed"]
 [connection signal="pressed" from="GUI/Save, Load (Demo))/a+" to="GUI/Save, Load (Demo))" method="_on_plus_a_pressed"]

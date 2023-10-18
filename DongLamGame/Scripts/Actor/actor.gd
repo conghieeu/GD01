@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name Actor
 
 @onready var target_group : String
-@export var max_hp = 10
-@export var hp = 10
+@export var max_hp = 100
+@export var hp = 100
 @export var max_mp = 10
 @export var mp = 10
 @export var max_def = 0
@@ -31,6 +31,8 @@ func take_damage(damage):
 	if damage_in < 0:
 		damage_in = 0
 	hp -= damage_in 
+	
+	print(hp)
 	
 	update_bar_HP()
 	$HeathBar.play_minus_heath_sound()
@@ -83,5 +85,5 @@ func drop_item():
 func update_bar_HP():
 	if hp <= 0:
 		hp = 0
-
+	print(remaining_hp())
 	$HeathBar.value = remaining_hp()

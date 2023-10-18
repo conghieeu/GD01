@@ -1,6 +1,7 @@
 extends Node
 class_name MainScene
 
+
 func _on_switch_scene_0():
 	Global.load_scene(self, "res://Scene/scene_0.tscn")
 
@@ -11,11 +12,3 @@ func _on_switch_scene_1():
 
 func _on_btn_credit_pressed():
 	Global.instance_credit_scene()
-
-
-func _save_game():
-	save_game.write_savegame()
-
-
-func _load_game():
-	save_game.write_savegame()
