@@ -1,16 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0yvar2yyj58a"]
+[gd_scene load_steps=16 format=3 uid="uid://c0yvar2yyj58a"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/MainScene.gd" id="1_rx8jg"]
 [ext_resource type="Script" path="res://Scripts/Save Load/SaveSystem.gd" id="2_20cpg"]
+[ext_resource type="PackedScene" uid="uid://bomo7ffcoj3tg" path="res://Prefabs/Settings.tscn" id="2_i6v8m"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStart.gd" id="2_nraxn"]
+[ext_resource type="PackedScene" uid="uid://dc2k2as4vjbj3" path="res://Prefabs/canvas_layer_player.tscn" id="3_x3nlo"]
 [ext_resource type="AudioStream" uid="uid://bavkyqkrmutf3" path="res://Audio/Forest_sound_effect_for_editing_for_(getmp3.pro).mp3" id="4_4q1wf"]
 [ext_resource type="PackedScene" uid="uid://47hbgfihn7t3" path="res://Prefabs/parallax_background.tscn" id="5_qtwri"]
 [ext_resource type="Texture2D" uid="uid://cgk861q8eyyqb" path="res://Sprites/Tilemaps/Tileset.png" id="6_y5q5d"]
 [ext_resource type="PackedScene" uid="uid://sq40ret7vfy7" path="res://Prefabs/Torch_1.tscn" id="7_vmkuu"]
-[ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="8_l5d5s"]
-[ext_resource type="Texture2D" uid="uid://dnayr5jysdqed" path="res://Backage/BarHP_SFX ( By Lyn )/icon.svg" id="9_lru7b"]
-[ext_resource type="AudioStream" uid="uid://caj23jpngif51" path="res://Audio/sfx/mixkit-arcade-retro-game-over-213.wav" id="10_81sk8"]
-[ext_resource type="AudioStream" uid="uid://bbx7it0doysg6" path="res://Audio/sfx/mixkit-game-treasure-coin-2038.wav" id="11_njlsk"]
-[ext_resource type="AudioStream" uid="uid://cvjmnqptimvw8" path="res://Audio/sfx/mixkit-failure-arcade-alert-notification-240.wav" id="12_fjicx"]
+[ext_resource type="PackedScene" uid="uid://br6i0aqm38jfq" path="res://Prefabs/skeleton.tscn" id="9_22do6"]
 [ext_resource type="PackedScene" uid="uid://c0ey38tpt64i8" path="res://Prefabs/camera_2d.tscn" id="13_32buv"]
 [ext_resource type="PackedScene" uid="uid://bo06jlg5njyan" path="res://Prefabs/player.tscn" id="13_cq4hp"]
 
@@ -291,20 +290,38 @@ physics_layer_0/collision_layer = 15
 physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_17hql")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwa8j"]
-size = Vector2(128, 128)
-
-[node name="Scene_1" type="Node"]
+[node name="scene_1" type="Node"]
 script = ExtResource("1_rx8jg")
 
-[node name="ChangeScene" type="ColorRect" parent="."]
+[node name="PlayerStart" type="Node2D" parent="."]
+position = Vector2(879, 2195)
+script = ExtResource("2_nraxn")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UI_Player" parent="GUI" node_paths=PackedStringArray("player") instance=ExtResource("3_x3nlo")]
+player = NodePath("../../Player")
+
+[node name="Systems" type="CanvasLayer" parent="GUI"]
+
+[node name="Settings" parent="GUI/Systems" instance=ExtResource("2_i6v8m")]
+visible = false
+
+[node name="Exit" parent="GUI/Systems/Settings/Menu" index="4"]
+visible = false
+
+[node name="ChangeScene" type="ColorRect" parent="GUI"]
 offset_left = 967.0
 offset_top = 2159.0
 offset_right = 1091.0
 offset_bottom = 2256.0
 color = Color(0, 0.619608, 0.619608, 1)
 
-[node name="Button" type="Button" parent="ChangeScene"]
+[node name="Button" type="Button" parent="GUI/ChangeScene"]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 46.0
@@ -312,7 +329,7 @@ offset_right = 94.0
 offset_bottom = 78.0
 text = "Scene_0"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ChangeScene"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GUI/ChangeScene"]
 layout_mode = 0
 offset_right = 123.0
 offset_bottom = 27.0
@@ -360,110 +377,24 @@ layer_0/tile_data = PackedInt32Array(2752513, 0, 0, 2752514, 65536, 0, 2752515, 
 
 [node name="Enemys" type="Node2D" parent="."]
 
-[node name="Enemy_1" type="RigidBody2D" parent="Enemys" groups=["Enemy"]]
-position = Vector2(602, 2224)
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("8_l5d5s")
+[node name="Skeleton" parent="Enemys" instance=ExtResource("9_22do6")]
+position = Vector2(330, 2207)
 
-[node name="Sprite" type="Sprite2D" parent="Enemys/Enemy_1"]
-modulate = Color(1, 0, 0.0392157, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_lru7b")
+[node name="Skeleton2" parent="Enemys" instance=ExtResource("9_22do6")]
+position = Vector2(592, 2191)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemys/Enemy_1"]
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_nwa8j")
+[node name="Skeleton3" parent="Enemys" instance=ExtResource("9_22do6")]
+position = Vector2(189, 2181)
 
-[node name="HeathBar" type="ProgressBar" parent="Enemys/Enemy_1"]
-offset_left = -60.0
-offset_top = -112.0
-offset_right = 59.0
-offset_bottom = -85.0
-max_value = 10.0
-value = 1.0
-metadata/_edit_use_anchors_ = true
-
-[node name="DeadSound" type="AudioStreamPlayer" parent="Enemys/Enemy_1"]
-stream = ExtResource("10_81sk8")
-
-[node name="PlusHeathSound" type="AudioStreamPlayer" parent="Enemys/Enemy_1"]
-stream = ExtResource("11_njlsk")
-
-[node name="MinusHeathSound" type="AudioStreamPlayer" parent="Enemys/Enemy_1"]
-stream = ExtResource("12_fjicx")
-
-[node name="Enemy_2" type="RigidBody2D" parent="Enemys" groups=["Enemy"]]
-position = Vector2(397, 2226)
-script = ExtResource("8_l5d5s")
-
-[node name="Sprite" type="Sprite2D" parent="Enemys/Enemy_2"]
-modulate = Color(1, 0, 0.0392157, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_lru7b")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemys/Enemy_2"]
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_nwa8j")
-
-[node name="HeathBar" type="ProgressBar" parent="Enemys/Enemy_2"]
-offset_left = -60.0
-offset_top = -112.0
-offset_right = 59.0
-offset_bottom = -85.0
-max_value = 10.0
-value = 1.0
-metadata/_edit_use_anchors_ = true
-
-[node name="DeadSound" type="AudioStreamPlayer" parent="Enemys/Enemy_2"]
-stream = ExtResource("10_81sk8")
-
-[node name="PlusHeathSound" type="AudioStreamPlayer" parent="Enemys/Enemy_2"]
-stream = ExtResource("11_njlsk")
-
-[node name="MinusHeathSound" type="AudioStreamPlayer" parent="Enemys/Enemy_2"]
-stream = ExtResource("12_fjicx")
-
-[node name="Enemy_3" type="RigidBody2D" parent="Enemys" groups=["Enemy"]]
-position = Vector2(262, 2226)
-script = ExtResource("8_l5d5s")
-
-[node name="Sprite" type="Sprite2D" parent="Enemys/Enemy_3"]
-modulate = Color(1, 0, 0.0392157, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_lru7b")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemys/Enemy_3"]
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_nwa8j")
-
-[node name="HeathBar" type="ProgressBar" parent="Enemys/Enemy_3"]
-offset_left = -60.0
-offset_top = -112.0
-offset_right = 59.0
-offset_bottom = -85.0
-max_value = 10.0
-value = 1.0
-metadata/_edit_use_anchors_ = true
-
-[node name="DeadSound" type="AudioStreamPlayer" parent="Enemys/Enemy_3"]
-stream = ExtResource("10_81sk8")
-
-[node name="PlusHeathSound" type="AudioStreamPlayer" parent="Enemys/Enemy_3"]
-stream = ExtResource("11_njlsk")
-
-[node name="MinusHeathSound" type="AudioStreamPlayer" parent="Enemys/Enemy_3"]
-stream = ExtResource("12_fjicx")
+[node name="Skeleton4" parent="Enemys" instance=ExtResource("9_22do6")]
+position = Vector2(478, 2214)
 
 [node name="Player" parent="." instance=ExtResource("13_cq4hp")]
 position = Vector2(786, 2218)
 
 [node name="Camera2D" parent="Player" instance=ExtResource("13_32buv")]
 
-[connection signal="pressed" from="ChangeScene/Button" to="." method="_on_switch_scene_0"]
-[connection signal="value_changed" from="Enemys/Enemy_1/HeathBar" to="Enemys/Enemy_1" method="_on_heath_bar_value_changed"]
-[connection signal="value_changed" from="Enemys/Enemy_1/HeathBar" to="Enemys/Enemy_1/Sprite" method="_on_heath_bar_value_changed" flags=18]
-[connection signal="value_changed" from="Enemys/Enemy_2/HeathBar" to="Enemys/Enemy_2" method="_on_heath_bar_value_changed"]
-[connection signal="value_changed" from="Enemys/Enemy_2/HeathBar" to="Enemys/Enemy_2/Sprite" method="_on_heath_bar_value_changed" flags=18]
-[connection signal="value_changed" from="Enemys/Enemy_3/HeathBar" to="Enemys/Enemy_3" method="_on_heath_bar_value_changed"]
-[connection signal="value_changed" from="Enemys/Enemy_3/HeathBar" to="Enemys/Enemy_3/Sprite" method="_on_heath_bar_value_changed" flags=18]
+[connection signal="pressed" from="GUI/ChangeScene/Button" to="." method="_on_switch_scene_0"]
+
+[editable path="GUI/UI_Player"]
+[editable path="GUI/Systems/Settings"]

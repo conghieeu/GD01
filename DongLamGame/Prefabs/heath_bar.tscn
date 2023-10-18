@@ -16,9 +16,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DeadSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_u3isa")
+bus = &"Sound FX"
 
 [node name="PlusHeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_afpal")
+bus = &"Sound FX"
 
 [node name="MinusHeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_75fwb")
+bus = &"Sound FX"

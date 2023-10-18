@@ -34,5 +34,7 @@ vertical_alignment = 1
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -17.0
+bus = &"Sound FX"
 
 [connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

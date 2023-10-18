@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_0ud2g"]
 [ext_resource type="Texture2D" uid="uid://dnayr5jysdqed" path="res://Backage/BarHP_SFX ( By Lyn )/icon.svg" id="2_42rp1"]
-[ext_resource type="AudioStream" uid="uid://caj23jpngif51" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-arcade-retro-game-over-213.wav" id="3_qyit0"]
-[ext_resource type="AudioStream" uid="uid://bbx7it0doysg6" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-game-treasure-coin-2038.wav" id="4_01vwh"]
-[ext_resource type="AudioStream" uid="uid://cvjmnqptimvw8" path="res://Backage/BarHP_SFX ( By Lyn )/sfx/mixkit-failure-arcade-alert-notification-240.wav" id="5_xx3bc"]
+[ext_resource type="AudioStream" uid="uid://caj23jpngif51" path="res://Audio/sfx/mixkit-arcade-retro-game-over-213.wav" id="3_qyit0"]
+[ext_resource type="AudioStream" uid="uid://bbx7it0doysg6" path="res://Audio/sfx/mixkit-game-treasure-coin-2038.wav" id="4_01vwh"]
+[ext_resource type="AudioStream" uid="uid://cvjmnqptimvw8" path="res://Audio/sfx/mixkit-failure-arcade-alert-notification-240.wav" id="5_xx3bc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwa8j"]
 size = Vector2(202.667, 202.667)
@@ -76,6 +76,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DeadSound" type="AudioStreamPlayer" parent="Enemy_1_Demo"]
 stream = ExtResource("3_qyit0")
+bus = &"Sound FX"
 
 [node name="PlusHeathSound" type="AudioStreamPlayer" parent="Enemy_1_Demo"]
 stream = ExtResource("4_01vwh")

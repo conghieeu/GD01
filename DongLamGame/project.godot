@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="DongLamGame"
-run/main_scene="res://Scene/scene_0.tscn"
+run/main_scene="res://Scene/menu_scene.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 

@@ -1,7 +1,8 @@
 class_name Player
 extends Actor
 
-@onready var main_scene = "../.."
+@onready var main_scene = $".."
+@onready var player_start : PlayerStart = $"../PlayerStart"
 
 @export var coin = 0
 @export var SPEED = 300.0
@@ -14,6 +15,7 @@ var gameOverScreen = preload("res://Scene/game_over_screen.tscn")
 var anim
 var save_system_instance = SaveSystem.new()
 var playerData = PlayerData.new()
+
 
 func _ready():
 	load_data()
@@ -167,6 +169,8 @@ func handle_player_lost():
 
 
 func save_data():
+	playerData.current_scene = main_scene.get_name() + ".tscn";
+	print(main_scene.get_name() + ".tscn")
 	save_system_instance.save_data_player(playerData)
 
 
@@ -175,3 +179,6 @@ func load_data():
 	coin = playerData.coins
 	hp = playerData.health
 	self.global_position = playerData.global_position
+	
+	if playerData.global_position == Vector2.ZERO:
+		self.global_position = player_start.global_position

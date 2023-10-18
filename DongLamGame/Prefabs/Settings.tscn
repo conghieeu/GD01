@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bomo7ffcoj3tg"]
+[gd_scene load_steps=5 format=3 uid="uid://bomo7ffcoj3tg"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Settings.gd" id="1_h643i"]
-[ext_resource type="Texture2D" uid="uid://j1wouckccd57" path="res://Sprites/icon.svg" id="1_sa501"]
+[ext_resource type="Theme" uid="uid://cki3ki7veb3mg" path="res://Theme/main_menu_button.tres" id="2_51ld3"]
+[ext_resource type="Texture2D" uid="uid://djp5ckvq5adsx" path="res://Sprites/Check_Box_1/true.png" id="3_65mgl"]
+[ext_resource type="Texture2D" uid="uid://nvhwhasitbf8" path="res://Sprites/Check_Box_1/false.png" id="4_vxam3"]
 
 [node name="Settings" type="Control"]
 process_mode = 3
@@ -12,6 +14,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h643i")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.152941, 0.152941, 0.152941, 0.882353)
 
 [node name="Menu" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -28,19 +39,36 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Start" type="Button" parent="Menu"]
+visible = false
 layout_mode = 2
+theme = ExtResource("2_51ld3")
 theme_override_font_sizes/font_size = 80
 text = "START"
 
 [node name="Option" type="Button" parent="Menu"]
 layout_mode = 2
+theme = ExtResource("2_51ld3")
 theme_override_font_sizes/font_size = 80
-text = "OPTION"
+text = "Options"
+
+[node name="menu" type="Button" parent="Menu"]
+layout_mode = 2
+theme = ExtResource("2_51ld3")
+theme_override_font_sizes/font_size = 80
+text = "Menu"
+
+[node name="Back" type="Button" parent="Menu"]
+layout_mode = 2
+theme = ExtResource("2_51ld3")
+theme_override_font_sizes/font_size = 80
+text = "Back"
 
 [node name="Exit" type="Button" parent="Menu"]
 layout_mode = 2
+theme = ExtResource("2_51ld3")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 80
-text = "EXIT"
+text = "Exit"
 
 [node name="Options" type="Control" parent="."]
 visible = false
@@ -67,26 +95,19 @@ grow_vertical = 2
 
 [node name="Video" type="Button" parent="Options/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_51ld3")
 theme_override_font_sizes/font_size = 80
-text = "VIDEO"
+text = "Video"
 
 [node name="Audio" type="Button" parent="Options/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_51ld3")
 theme_override_font_sizes/font_size = 80
-text = "AUDIO"
+text = "Audio"
 
-[node name="BackFromOptions" type="Button" parent="Options"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -22.5
-offset_top = -31.0
-offset_right = 22.5
-grow_horizontal = 2
-grow_vertical = 0
+[node name="BackFromOptions" type="Button" parent="Options/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_51ld3")
 theme_override_font_sizes/font_size = 80
 text = "Back"
 
@@ -141,18 +162,24 @@ size_flags_horizontal = 3
 
 [node name="FullScreen" type="CheckBox" parent="Video/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_icons/unchecked = ExtResource("1_sa501")
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_icons/checked = ExtResource("3_65mgl")
+theme_override_icons/unchecked = ExtResource("4_vxam3")
 
 [node name="Borderless" type="CheckBox" parent="Video/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_icons/unchecked = ExtResource("1_sa501")
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_icons/checked = ExtResource("3_65mgl")
+theme_override_icons/unchecked = ExtResource("4_vxam3")
 
 [node name="VSync" type="CheckBox" parent="Video/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_icons/unchecked = ExtResource("1_sa501")
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_icons/checked = ExtResource("3_65mgl")
+theme_override_icons/unchecked = ExtResource("4_vxam3")
 
 [node name="BackFromVideo" type="Button" parent="Video"]
 layout_mode = 1
@@ -161,11 +188,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
+offset_left = -96.5
+offset_top = -142.0
+offset_right = 96.5
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_51ld3")
 theme_override_font_sizes/font_size = 80
 text = "Back"
 
@@ -222,16 +251,28 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
+min_value = 0.7
+max_value = 6.0
+step = 0.01
+value = 4.0
 
 [node name="Music" type="HSlider" parent="Audio/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
+min_value = 0.7
+max_value = 6.0
+step = 0.01
+value = 4.0
 
 [node name="Sound FX" type="HSlider" parent="Audio/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
+min_value = 0.7
+max_value = 6.0
+step = 0.01
+value = 4.0
 
 [node name="BackFromAudio" type="Button" parent="Audio"]
 layout_mode = 1
@@ -240,20 +281,24 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
+offset_left = -95.0
+offset_top = -165.0
+offset_right = 98.0
+offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_51ld3")
 theme_override_font_sizes/font_size = 80
 text = "Back"
 
 [connection signal="pressed" from="Menu/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Menu/Option" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="Menu/menu" to="." method="_on_switch_scene_menu"]
+[connection signal="pressed" from="Menu/Back" to="." method="_on_btn_setting_pressed"]
 [connection signal="pressed" from="Menu/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Options/VBoxContainer/Video" to="." method="_on_video_pressed"]
 [connection signal="pressed" from="Options/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
-[connection signal="pressed" from="Options/BackFromOptions" to="." method="_on_back_from_options_pressed"]
+[connection signal="pressed" from="Options/VBoxContainer/BackFromOptions" to="." method="_on_back_from_options_pressed"]
 [connection signal="toggled" from="Video/HBoxContainer/VBoxContainer2/FullScreen" to="." method="_on_full_screen_toggled"]
 [connection signal="toggled" from="Video/HBoxContainer/VBoxContainer2/Borderless" to="." method="_on_borderless_toggled"]
 [connection signal="toggled" from="Video/HBoxContainer/VBoxContainer2/VSync" to="." method="_on_v_sync_toggled"]

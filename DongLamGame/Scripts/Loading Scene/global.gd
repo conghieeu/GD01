@@ -3,13 +3,14 @@ extends Node
 
 @onready var ui_credit_scene = preload("res://Scene/ui_credit.tscn")
 
+var loading_screen = preload("res://Scene/loading_screen.tscn")
+
 const GAME_SCENES = {
 	"ui_credit": "res://Scene/ui_credit.tscn",
 	"scene_0": "res://Scene/scene_0.tscn",
-	"scene_1": "res://Scene/scene_1.tscn"
+	"scene_1": "res://Scene/scene_1.tscn",
+	"menu_scene" : "res://Scene/menu_scene.tscn"
 }
-
-var loading_screen = preload("res://Scene/loading_screen.tscn")
 
 func load_scene(current_scene, next_scene):
 	# Tạo mới loading screen instance
@@ -25,7 +26,7 @@ func load_scene(current_scene, next_scene):
 	# đợi animation chuyển cảnh vào chạy xong
 	await loading_screen_instance.safe_to_load
 	current_scene.queue_free()
-#
+
 	# trạng thái load
 	while true:
 		var load_progress = []

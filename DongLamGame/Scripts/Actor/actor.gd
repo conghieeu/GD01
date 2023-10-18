@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name Actor
 
 @onready var target_group : String
-@export var max_hp = 100
-@export var hp = 100
+@export var max_hp = 10
+@export var hp = 10
 @export var max_mp = 10
 @export var mp = 10
 @export var max_def = 0

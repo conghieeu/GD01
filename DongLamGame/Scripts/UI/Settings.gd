@@ -83,3 +83,11 @@ func _on_sound_fx_value_changed(value):
 func _on_back_from_audio_pressed():
 	show_and_hide(options, audio)
 
+
+func _on_switch_scene_menu():
+	toggle()
+	Global.load_scene(self, "menu_scene")
+
+
+func _on_btn_setting_pressed():
+	toggle()

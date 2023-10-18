@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds6vr84ar648c"]
+[gd_scene load_steps=4 format=3 uid="uid://ds6vr84ar648c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui_credit.gd" id="1_6f8pk"]
+[ext_resource type="Theme" uid="uid://cki3ki7veb3mg" path="res://Theme/main_menu_button.tres" id="2_cj00w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifdv1"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
@@ -30,12 +31,13 @@ theme_override_constants/margin_bottom = 40
 
 [node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.623529, 0.176471, 1)
-theme_override_font_sizes/font_size = 200
-text = "Credit"
+theme_override_font_sizes/font_size = 100
+text = "CREDITS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -48,13 +50,13 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/Rows"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "creator: Cato
-partner: BNJ, Lyn"
+theme_override_font_sizes/font_size = 70
+text = "creator: Koopy"
 
 [node name="btn_close" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/Rows"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 100
+theme = ExtResource("2_cj00w")
+theme_override_font_sizes/font_size = 70
 text = "BACK <-"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/Rows/btn_close" to="." method="_on_btn_close_pressed"]

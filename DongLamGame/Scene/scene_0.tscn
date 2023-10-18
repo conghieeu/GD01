@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://ck67gk8qlmva4"]
+[gd_scene load_steps=23 format=3 uid="uid://ck67gk8qlmva4"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/MainScene.gd" id="1_yfges"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStart.gd" id="2_bj13b"]
 [ext_resource type="PackedScene" uid="uid://dc2k2as4vjbj3" path="res://Prefabs/canvas_layer_player.tscn" id="2_kx1qq"]
 [ext_resource type="PackedScene" uid="uid://bomo7ffcoj3tg" path="res://Prefabs/Settings.tscn" id="3_5oy1f"]
 [ext_resource type="AudioStream" uid="uid://bavkyqkrmutf3" path="res://Audio/Forest_sound_effect_for_editing_for_(getmp3.pro).mp3" id="5_idd1i"]
@@ -643,12 +644,21 @@ sources/0 = SubResource("TileSetAtlasSource_enbjm")
 script = ExtResource("1_yfges")
 metadata/_edit_horizontal_guides_ = []
 
+[node name="PlayerStart" type="Node2D" parent="."]
+position = Vector2(891, 2169)
+script = ExtResource("2_bj13b")
+
 [node name="GUI" type="Node2D" parent="."]
 
 [node name="UI_Player" parent="GUI" node_paths=PackedStringArray("player") instance=ExtResource("2_kx1qq")]
 player = NodePath("../../Player")
 
-[node name="Settings" parent="GUI/UI_Player" instance=ExtResource("3_5oy1f")]
+[node name="Systems" type="CanvasLayer" parent="GUI"]
+
+[node name="Settings" parent="GUI/Systems" instance=ExtResource("3_5oy1f")]
+visible = false
+
+[node name="Exit" parent="GUI/Systems/Settings/Menu" index="4"]
 visible = false
 
 [node name="Save, Load (Demo))" type="ColorRect" parent="GUI"]
@@ -831,6 +841,7 @@ position = Vector2(794, 2268)
 stream = ExtResource("5_idd1i")
 volume_db = 10.0
 autoplay = true
+bus = &"Music"
 
 [node name="NPCs" type="Node2D" parent="."]
 
@@ -900,3 +911,4 @@ mp = 66
 [connection signal="pressed" from="GUI/ChangeScene/Button" to="." method="_on_switch_scene_1"]
 
 [editable path="GUI/UI_Player"]
+[editable path="GUI/Systems/Settings"]
