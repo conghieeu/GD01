@@ -32,8 +32,6 @@ func take_damage(damage):
 		damage_in = 0
 	hp -= damage_in 
 	
-	print(hp)
-	
 	update_bar_HP()
 	$HeathBar.play_minus_heath_sound()
 	on_death()

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://chqrjavprifys"
+path="res://.godot/imported/35 End of Monolith (Unused).mp3-4e0dc7c800da1b2f7c3ee54eff92d88d.mp3str"
+
+[deps]
+
+source_file="res://Audio/35 End of Monolith (Unused).mp3"
+dest_files=["res://.godot/imported/35 End of Monolith (Unused).mp3-4e0dc7c800da1b2f7c3ee54eff92d88d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

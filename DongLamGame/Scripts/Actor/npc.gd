@@ -13,11 +13,11 @@ func _physics_process(delta):
 	move_and_slide()
 
 const lines: Array[String] = [
-	"Này, nhìn bạn trông có vẻ rất là mạnh",
-	"Muốn đánh nhau à?",
-	"Đợi đã...",
-	"Tôi không nên phí sức trước một trận đấu quan trọng...",
-	"Thì, tôi sẽ gặp bạn ở đấu trường"
+	"Chào bạn gamer.",
+	"Chào mừng bạn để trò chơi này.",
+	"Đây là trò chơi demo...",
+	"Và vì vậy chưa có các màng chơi :(...",
+	"Nhưng dù sao thì cảm ơn bạn đã ghé qua."
 ]
 
 # nhận sự kiện vào từ phím

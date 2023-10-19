@@ -36,12 +36,7 @@ func _process(delta):
 # Để nhân vật có thể di chuyển theo các nút
 func _physics_process(delta):
 	movement(delta)
-	save_data()
-
-
-func take_damage(damage):
-	super.take_damage(damage)
-	playerData.health = hp
+	on_key_save_data()
 
 
 func _on_touching_coin(body):
@@ -50,6 +45,14 @@ func _on_touching_coin(body):
 		$audio_plus_coin.play()
 		body.queue_free()
 		playerData.coins = coin
+
+
+func take_damage(damage):
+	super.take_damage(damage)
+	playerData.health = hp
+	
+	if hp <= 0:
+		save_data()
 
 
 func shoot_to_mouse():
@@ -115,6 +118,7 @@ func handle_attack():
 		await anim.animation_finished
 		is_attacking = false
 
+
 func handle_roll():
 	if Input.is_action_pressed("Roll"):
 		is_attacking = false
@@ -170,18 +174,21 @@ func handle_player_lost():
 
 var is_input_released = false
 var check_input_released = false
-func save_data():
+func on_key_save_data():
 	if !Input.is_anything_pressed():
 		is_input_released = true
 	else:
 		is_input_released = false
 	
 	if is_input_released != check_input_released && is_input_released:
-		playerData.current_scene = main_scene.get_name() + ".tscn";
-		save_system_instance.save_data_player(playerData)
-		check_input_released = is_input_released
-		print("saved game")
-	pass
+		save_data()
+
+
+func save_data():
+	playerData.current_scene = main_scene.get_name() + ".tscn";
+	save_system_instance.save_data_player(playerData)
+	check_input_released = is_input_released
+	print("saved game")
 
 
 func load_data():
