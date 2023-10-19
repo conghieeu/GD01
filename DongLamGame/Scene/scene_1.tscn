@@ -311,10 +311,8 @@ player = NodePath("../../Player")
 [node name="Settings" parent="GUI/Systems" instance=ExtResource("2_i6v8m")]
 visible = false
 
-[node name="Exit" parent="GUI/Systems/Settings/Menu" index="4"]
-visible = false
-
 [node name="ChangeScene" type="ColorRect" parent="GUI"]
+layout_mode = 0
 offset_left = 967.0
 offset_top = 2159.0
 offset_right = 1091.0

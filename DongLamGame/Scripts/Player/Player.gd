@@ -168,10 +168,20 @@ func handle_player_lost():
 	pass
 
 
+var is_input_released = false
+var check_input_released = false
 func save_data():
-	playerData.current_scene = main_scene.get_name() + ".tscn";
-	print(main_scene.get_name() + ".tscn")
-	save_system_instance.save_data_player(playerData)
+	if !Input.is_anything_pressed():
+		is_input_released = true
+	else:
+		is_input_released = false
+	
+	if is_input_released != check_input_released && is_input_released:
+		playerData.current_scene = main_scene.get_name() + ".tscn";
+		save_system_instance.save_data_player(playerData)
+		check_input_released = is_input_released
+		print("saved game")
+	pass
 
 
 func load_data():

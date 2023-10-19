@@ -87,6 +87,9 @@ visible = false
 [node name="menu" parent="CanvasLayer/Settings/Menu" index="2"]
 visible = false
 
+[node name="Exit" parent="CanvasLayer/Settings/Menu" index="4"]
+visible = false
+
 [connection signal="pressed" from="CanvasLayer/MenuButton/VBoxContainer/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuButton/VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuButton/VBoxContainer/btn_scores" to="CanvasLayer/ScoresPanel" method="_on_btn_scores_pressed"]
