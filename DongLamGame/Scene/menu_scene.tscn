@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1eopvqltfwc6"]
+[gd_scene load_steps=9 format=3 uid="uid://d1eopvqltfwc6"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/MainScene.gd" id="1_jm404"]
 [ext_resource type="Theme" uid="uid://cki3ki7veb3mg" path="res://Theme/main_menu_button.tres" id="2_xx65a"]
 [ext_resource type="PackedScene" uid="uid://bomo7ffcoj3tg" path="res://Prefabs/Settings.tscn" id="3_2jodu"]
 [ext_resource type="PackedScene" uid="uid://da0ie2b0dqr08" path="res://Prefabs/ScoresPanel.tscn" id="4_bmcjb"]
 [ext_resource type="Texture2D" uid="uid://c31stnc0n0mwn" path="res://Sprites/1920x1080-px-A-Bastards-Tale-knight-pixel-art-video-games-1325043-wallhere.com.jpg" id="4_qtess"]
+[ext_resource type="PackedScene" uid="uid://ds6vr84ar648c" path="res://Scene/ui_credit.tscn" id="6_2skxg"]
 [ext_resource type="AudioStream" uid="uid://chqrjavprifys" path="res://Audio/35 End of Monolith (Unused).mp3" id="6_nv8dd"]
+[ext_resource type="PackedScene" uid="uid://b7sxk5s8u48y" path="res://Scene/loading_screen.tscn" id="7_0tj8y"]
 
-[node name="menu_scene" type="Node2D"]
+[node name="menu_scene" type="Node2D" node_paths=PackedStringArray("loadingScene")]
 script = ExtResource("1_jm404")
+loadingScene = NodePath("loading_screen")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -43,6 +46,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="continue" type="Button" parent="CanvasLayer/MenuButton/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_xx65a")
 theme_override_font_sizes/font_size = 40
@@ -89,6 +93,12 @@ visible = false
 visible = false
 
 [node name="Exit" parent="CanvasLayer/Settings/Menu" index="4"]
+visible = false
+
+[node name="ui_creadit" parent="." instance=ExtResource("6_2skxg")]
+visible = false
+
+[node name="loading_screen" parent="." instance=ExtResource("7_0tj8y")]
 visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

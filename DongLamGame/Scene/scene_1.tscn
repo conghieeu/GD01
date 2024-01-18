@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0yvar2yyj58a"]
+[gd_scene load_steps=17 format=3 uid="uid://c0yvar2yyj58a"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/MainScene.gd" id="1_rx8jg"]
 [ext_resource type="Script" path="res://Scripts/Save Load/SaveSystem.gd" id="2_20cpg"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://br6i0aqm38jfq" path="res://Prefabs/skeleton.tscn" id="9_22do6"]
 [ext_resource type="PackedScene" uid="uid://c0ey38tpt64i8" path="res://Prefabs/camera_2d.tscn" id="13_32buv"]
 [ext_resource type="PackedScene" uid="uid://bo06jlg5njyan" path="res://Prefabs/player.tscn" id="13_cq4hp"]
+[ext_resource type="PackedScene" uid="uid://b7sxk5s8u48y" path="res://Scene/loading_screen.tscn" id="13_ywb5u"]
 
 [sub_resource type="Environment" id="Environment_esunj"]
 background_mode = 3
@@ -290,8 +291,9 @@ physics_layer_0/collision_layer = 15
 physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_17hql")
 
-[node name="scene_1" type="Node"]
+[node name="scene_1" type="Node" node_paths=PackedStringArray("loadingScene")]
 script = ExtResource("1_rx8jg")
+loadingScene = NodePath("GUI/loading_screen")
 
 [node name="PlayerStart" type="Node2D" parent="."]
 position = Vector2(879, 2195)
@@ -310,6 +312,8 @@ player = NodePath("../../Player")
 
 [node name="Settings" parent="GUI/Systems" instance=ExtResource("2_i6v8m")]
 visible = false
+
+[node name="loading_screen" parent="GUI" instance=ExtResource("13_ywb5u")]
 
 [node name="ChangeScene" type="ColorRect" parent="GUI"]
 layout_mode = 0

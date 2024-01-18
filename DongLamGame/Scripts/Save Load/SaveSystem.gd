@@ -35,7 +35,8 @@ func save_data_player(player_data: PlayerData):
 				"y": player_data.global_position.y
 			},
 			"coins": player_data.coins,
-			"current_scene": player_data.current_scene
+			"current_scene": player_data.current_scene,
+			"new_game": player_data.new_game
 		}
 	}
 
@@ -73,6 +74,7 @@ func load_data_player() -> PlayerData:
 		player_data.global_position = Vector2(data.player_data.global_position.x, data.player_data.global_position.y)
 		player_data.coins = data.player_data.coins
 		player_data.current_scene = data.player_data.current_scene
+		player_data.new_game = data.player_data.new_game
 	else:
 		printerr("Cannot open non-existent file as %s!" % [path])
 

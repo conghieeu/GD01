@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ck67gk8qlmva4"]
+[gd_scene load_steps=24 format=3 uid="uid://ck67gk8qlmva4"]
 
 [ext_resource type="Script" path="res://Scripts/Loading Scene/MainScene.gd" id="1_yfges"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStart.gd" id="2_bj13b"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://p0xntkisj5qk" path="res://Prefabs/enemy_archers.tscn" id="15_71mli"]
 [ext_resource type="PackedScene" uid="uid://dhv5vnj65fjun" path="res://Prefabs/npc.tscn" id="15_b5bxb"]
 [ext_resource type="PackedScene" uid="uid://bo06jlg5njyan" path="res://Prefabs/player.tscn" id="15_c70l3"]
+[ext_resource type="PackedScene" uid="uid://b7sxk5s8u48y" path="res://Scene/loading_screen.tscn" id="17_3a62a"]
 
 [sub_resource type="GDScript" id="GDScript_r6vug"]
 script/source = "extends ColorRect
@@ -640,8 +641,9 @@ terrain_set_0/terrain_0/name = "Autotile"
 terrain_set_0/terrain_0/color = Color(1, 0, 0, 1)
 sources/0 = SubResource("TileSetAtlasSource_enbjm")
 
-[node name="scene_0" type="Node"]
+[node name="scene_0" type="Node" node_paths=PackedStringArray("loadingScene")]
 script = ExtResource("1_yfges")
+loadingScene = NodePath("GUI/loading_screen")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="PlayerStart" type="Node2D" parent="."]
@@ -657,6 +659,8 @@ player = NodePath("../../Player")
 
 [node name="Settings" parent="GUI/Systems" instance=ExtResource("3_5oy1f")]
 visible = false
+
+[node name="loading_screen" parent="GUI" instance=ExtResource("17_3a62a")]
 
 [node name="Save, Load (Demo))" type="ColorRect" parent="GUI"]
 offset_left = 1068.0

@@ -50,19 +50,7 @@ func _on_touching_coin(body):
 func take_damage(damage):
 	super.take_damage(damage)
 	playerData.health = hp
-	
-	if hp <= 0:
-		save_data()
-
-
-func shoot_to_mouse():
-#	# Điều kiện bắn đạn
-#	if Input.is_mouse_button_pressed(1):
-#		shoot()
-#
-#	# xoay turet, hướng nòng súng vào con trỏ chuột
-#	$Turet.look_at(get_global_mouse_position())
-	pass
+	save_data()
 
 
 func movement(delta):
@@ -157,6 +145,7 @@ func handle_animation():
 		$AnimationPlayer.play("Idle")
 
 
+# khi player thắng thì hiện cái UI thắng lênh
 func handle_player_win():
 	var game_over = gameOverScreen.instantiate()
 	add_child(game_over)
@@ -164,6 +153,7 @@ func handle_player_win():
 	get_tree().paused = true
 
 
+# khi player thua thì bật cái UI thua lênh
 func handle_player_lost():
 	var game_over = gameOverScreen.instantiate()
 	add_child(game_over)
@@ -185,17 +175,21 @@ func on_key_save_data():
 
 
 func save_data():
-	playerData.current_scene = main_scene.get_name() + ".tscn";
+	playerData.current_scene = "res://Scene/" + main_scene.get_name() + ".tscn"
+	playerData.coins = coin
+	playerData.global_position = self.global_position
+	playerData.health = hp
+	playerData.new_game = false
+	
 	save_system_instance.save_data_player(playerData)
-	check_input_released = is_input_released
-	print("saved game")
+	
 
 
 func load_data():
 	playerData = save_system_instance.load_data_player()
+	
 	coin = playerData.coins
 	hp = playerData.health
-	self.global_position = playerData.global_position
 	
-	if playerData.global_position == Vector2.ZERO:
-		self.global_position = player_start.global_position
+	if(!playerData.new_game):
+		self.global_position = playerData.global_position
